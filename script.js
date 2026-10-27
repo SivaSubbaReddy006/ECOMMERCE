@@ -1,1139 +1,1131 @@
-// =============================================
-// FASHION STORE - E-COMMERCE WEBSITE
-// Front-end demonstration using HTML, CSS, JS
-// =============================================
 
-const $ = (selector) => document.querySelector(selector);
-const money = (amount) =>
-  "₹" + Number(amount).toLocaleString("en-IN");
+"use strict";
 
-const products = [
-  {
-    id: 1,
-    name: "Relaxed Cotton T-Shirt",
-    category: "Men",
-    type: "Everyday Essentials",
-    price: 599,
-    oldPrice: 899,
-    rating: 4.7,
-    badge: "BESTSELLER",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 2,
-    name: "Minimal Everyday Shirt",
-    category: "Men",
-    type: "Modern Classics",
-    price: 1199,
-    oldPrice: 1599,
-    rating: 4.6,
-    badge: "TRENDING",
-    image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 3,
-    name: "Soft Knit Co-ord Set",
-    category: "Women",
-    type: "Comfort Collection",
-    price: 1499,
-    oldPrice: 1999,
-    rating: 4.8,
-    badge: "JUST IN",
-    image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 4,
-    name: "Classic Sneakers",
-    category: "Footwear",
-    type: "Everyday Footwear",
-    price: 1799,
-    oldPrice: 2499,
-    rating: 4.5,
-    badge: "POPULAR",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 5,
-    name: "Structured Crossbody Bag",
-    category: "Accessories",
-    type: "Finishing Touches",
-    price: 999,
-    oldPrice: 1399,
-    rating: 4.4,
-    badge: "LIMITED OFFER",
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 6,
-    name: "Everyday Sunglasses",
-    category: "Accessories",
-    type: "Sunny Day Essentials",
-    price: 749,
-    oldPrice: 1099,
-    rating: 4.3,
-    badge: "SAVE 32%",
-    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 7,
-    name: "Floral Day Dress",
-    category: "Women",
-    type: "Occasion Wear",
-    price: 1599,
-    oldPrice: 2199,
-    rating: 4.7,
-    badge: "NEW SEASON",
-    image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 8,
-    name: "Daily Fresh Fragrance",
-    category: "Beauty",
-    type: "Personal Care",
-    price: 899,
-    oldPrice: 1199,
-    rating: 4.2,
-    badge: "FAVOURITE",
-    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 9,
-    name: "Tailored Straight Pants",
-    category: "Men",
-    type: "Smart Essentials",
-    price: 1299,
-    oldPrice: 1799,
-    rating: 4.5,
-    badge: "VERSATILE",
-    image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 10,
-    name: "Lightweight Shoulder Bag",
-    category: "Accessories",
-    type: "Everyday Bags",
-    price: 1099,
-    oldPrice: 1499,
-    rating: 4.6,
-    badge: "EDITOR'S PICK",
-    image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 11,
-    name: "Weekend Running Shoes",
-    category: "Footwear",
-    type: "Sports Collection",
-    price: 2199,
-    oldPrice: 2999,
-    rating: 4.8,
-    badge: "TOP RATED",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80"
-  },
-  {
-    id: 12,
-    name: "Everyday Skincare Set",
-    category: "Beauty",
-    type: "Daily Ritual",
-    price: 699,
-    oldPrice: 999,
-    rating: 4.4,
-    badge: "GREAT VALUE",
-    image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80"
-  }
-];
+/*
+  STUDIO NILA — FRONTEND DEMO
 
-// =============================================
-// DATA AND BROWSER STORAGE
-// =============================================
+  Browser storage:
+  - Cart, wishlist, demo profile, addresses, and demo orders.
 
-function loadData(key, fallback) {
+  Not production authentication:
+  - Demo OTP is always 123456.
+  - No email or SMS is sent.
+  - No real payment is processed.
+  - Order tracking is simulated.
+  - Never treat this demo as proof of identity.
+
+  Later, replace the demo auth/payment functions with backend API calls.
+*/
+
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+const STORAGE = {
+  cart: "studioNila_cart",
+  wishlist: "studioNila_wishlist",
+  profile: "studioNila_demoProfile",
+  addresses: "studioNila_addresses",
+  orders: "studioNila_demoOrders"
+};
+
+const money = value =>
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0
+  }).format(value);
+
+function readStorage(key, fallback) {
   try {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : fallback;
+    const saved = localStorage.getItem(key);
+    return saved === null ? fallback : JSON.parse(saved);
   } catch {
     return fallback;
   }
 }
 
-function saveData(key, value) {
+function saveStorage(key, value) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
+    return true;
   } catch {
-    showToast("Unable to save data in this browser.");
+    showToast("Browser storage is unavailable. Your changes may not persist.");
+    return false;
   }
 }
 
-let cart = loadData("fs_cart", []);
-let wishlist = loadData("fs_wishlist", []);
-let addresses = loadData("fs_addresses", []);
-let orders = loadData("fs_orders", []);
-let user = loadData("fs_user", null);
+const products = [
+  {
+    id: "linen-shirt",
+    name: "The relaxed linen shirt",
+    category: "Clothing",
+    color: "Natural ivory",
+    price: 1290,
+    oldPrice: 1590,
+    badge: "A favourite",
+    image: "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?auto=format&fit=crop&w=700&q=80",
+    description: "An easy, relaxed shirt for slow mornings, long afternoons and everything in between."
+  },
+  {
+    id: "everyday-tote",
+    name: "The everyday tote",
+    category: "Accessories",
+    color: "Warm beige",
+    price: 890,
+    oldPrice: null,
+    badge: "Everyday essential",
+    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=700&q=80",
+    description: "A dependable everyday carry-all for the things that come with you."
+  },
+  {
+    id: "classic-sneakers",
+    name: "The classic low-top",
+    category: "Essentials",
+    color: "Off white",
+    price: 1790,
+    oldPrice: 2190,
+    badge: "Just right",
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
+    description: "A clean everyday sneaker made to work with the rest of your wardrobe."
+  },
+  {
+    id: "cotton-dress",
+    name: "The Sunday dress",
+    category: "Clothing",
+    color: "Soft neutral",
+    price: 1890,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80",
+    description: "An unfussy silhouette for days when comfort is part of the plan."
+  },
+  {
+    id: "crossbody",
+    name: "The little crossbody",
+    category: "Accessories",
+    color: "Earth brown",
+    price: 1190,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=80",
+    description: "A compact everyday bag that keeps the essentials close."
+  },
+  {
+    id: "cotton-tee",
+    name: "The good cotton tee",
+    category: "Clothing",
+    color: "Classic white",
+    price: 590,
+    oldPrice: null,
+    badge: "Under ₹600",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
+    description: "The kind of tee you buy once, wear often and reach for without thinking."
+  },
+  {
+    id: "sunglasses",
+    name: "The weekend frames",
+    category: "Accessories",
+    color: "Tortoiseshell",
+    price: 690,
+    oldPrice: 850,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
+    description: "An understated finishing touch for sunny commutes and weekend plans."
+  },
+  {
+    id: "knit-top",
+    name: "The soft knit top",
+    category: "Clothing",
+    color: "Sand",
+    price: 1090,
+    oldPrice: null,
+    badge: "Easy layer",
+    image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=700&q=80",
+    description: "A simple layer that fits neatly into a well-loved everyday wardrobe."
+  }
+];
 
-let selectedCategory = "All";
+let cart = readStorage(STORAGE.cart, []);
+let wishlist = readStorage(STORAGE.wishlist, []);
+let profile = readStorage(STORAGE.profile, null);
+let addresses = readStorage(STORAGE.addresses, []);
+let orders = readStorage(STORAGE.orders, []);
+
+let activeCategory = "All";
 let searchTerm = "";
-let toastTimer;
+let toastTimeout;
+let authChannel = "email";
+let authDestination = "";
+let authPurpose = "login";
+let checkoutAddress = null;
+let checkoutStep = 1;
+let checkoutPayment = "cod";
+let checkoutDraft = null;
+let currentAccountTab = "profile";
 
-// =============================================
-// GENERAL HELPERS
-// =============================================
+const grid = $("#productGrid");
+const template = $("#productTemplate");
+const modalBackdrop = $("#modalBackdrop");
+const modalContent = $("#modalContent");
+const cartDrawer = $("#cartDrawer");
+const cartOverlay = $("#cartOverlay");
 
-function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, (char) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
+function persistCart() {
+  saveStorage(STORAGE.cart, cart);
+  updateCartCount();
+}
+
+function updateCartCount() {
+  const count = cart.reduce((total, item) => total + item.quantity, 0);
+  $("#cartCount").textContent = count;
+  $("#drawerCount").textContent = `(${count})`;
+}
+
+function getProduct(id) {
+  return products.find(product => product.id === id);
+}
+
+function cartTotal() {
+  return cart.reduce((total, item) => {
+    const product = getProduct(item.id);
+    return total + (product ? product.price * item.quantity : 0);
+  }, 0);
+}
+
+function visibleProducts() {
+  let result = [...products];
+
+  if (activeCategory !== "All") {
+    result = result.filter(product => product.category === activeCategory);
+  }
+
+  if (searchTerm.trim()) {
+    const term = searchTerm.toLowerCase().trim();
+    result = result.filter(product =>
+      `${product.name} ${product.category} ${product.color} ${product.description}`
+        .toLowerCase()
+        .includes(term)
+    );
+  }
+
+  const sort = $("#sortSelect").value;
+  if (sort === "price-low") result.sort((a, b) => a.price - b.price);
+  if (sort === "price-high") result.sort((a, b) => b.price - a.price);
+  if (sort === "name") result.sort((a, b) => a.name.localeCompare(b.name));
+
+  return result;
+}
+
+function renderProducts() {
+  grid.replaceChildren();
+  const result = visibleProducts();
+
+  $("#emptyState").hidden = result.length > 0;
+  $("#resultsLabel").textContent =
+    searchTerm || activeCategory !== "All"
+      ? `${result.length} ${result.length === 1 ? "piece" : "pieces"} found`
+      : "Our current favourites";
+
+  result.forEach(product => {
+    const fragment = template.content.cloneNode(true);
+    const card = $(".product-card", fragment);
+    const image = $(".product-image", fragment);
+    const badge = $(".product-badge", fragment);
+    const wishButton = $(".wishlist-button", fragment);
+
+    card.dataset.productId = product.id;
+    image.src = product.image;
+    image.alt = product.name;
+    image.onerror = () => {
+      image.style.opacity = ".35";
+      image.alt = `${product.name} — product image unavailable`;
+    };
+
+    badge.textContent = product.badge;
+    badge.hidden = !product.badge;
+
+    $(".product-category", fragment).textContent = product.category;
+    $(".product-color", fragment).textContent = product.color;
+    $(".product-name", fragment).textContent = product.name;
+
+    $(".product-price", fragment).innerHTML = "";
+    const currentPrice = document.createElement("span");
+    currentPrice.textContent = money(product.price);
+    $(".product-price", fragment).append(currentPrice);
+
+    if (product.oldPrice) {
+      const oldPrice = document.createElement("span");
+      oldPrice.className = "old-price";
+      oldPrice.textContent = money(product.oldPrice);
+      $(".product-price", fragment).append(oldPrice);
+    }
+
+    const saved = wishlist.includes(product.id);
+    wishButton.classList.toggle("is-saved", saved);
+    wishButton.textContent = saved ? "♥" : "♡";
+    wishButton.setAttribute(
+      "aria-label",
+      saved ? "Remove from wishlist" : "Add to wishlist"
+    );
+
+    $(".quick-add", fragment).addEventListener("click", () => addToCart(product.id));
+    wishButton.addEventListener("click", () => toggleWishlist(product.id));
+
+    image.addEventListener("click", () => openProductDetails(product.id));
+    image.style.cursor = "pointer";
+
+    grid.append(fragment);
+  });
+}
+
+function setCategory(category) {
+  activeCategory = category;
+  $$(".category-tile").forEach(button => {
+    button.classList.toggle("active", button.dataset.category === category);
+  });
+  renderProducts();
+}
+
+function addToCart(id) {
+  const product = getProduct(id);
+  if (!product) return;
+
+  const existing = cart.find(item => item.id === id);
+  if (existing) {
+    existing.quantity = Math.min(existing.quantity + 1, 10);
+  } else {
+    cart.push({ id, quantity: 1 });
+  }
+
+  persistCart();
+  renderCart();
+  showToast(`${product.name} added to your bag.`);
+}
+
+function changeQuantity(id, amount) {
+  const item = cart.find(entry => entry.id === id);
+  if (!item) return;
+
+  item.quantity += amount;
+  if (item.quantity <= 0) {
+    cart = cart.filter(entry => entry.id !== id);
+  } else {
+    item.quantity = Math.min(item.quantity, 10);
+  }
+
+  persistCart();
+  renderCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  persistCart();
+  renderCart();
+}
+
+function toggleWishlist(id) {
+  if (wishlist.includes(id)) {
+    wishlist = wishlist.filter(item => item !== id);
+    showToast("Removed from your wishlist.");
+  } else {
+    wishlist.push(id);
+    showToast("Added to your wishlist.");
+  }
+
+  saveStorage(STORAGE.wishlist, wishlist);
+  renderProducts();
+}
+
+function renderCart() {
+  const container = $("#cartItems");
+  container.replaceChildren();
+
+  const validCart = cart.filter(item => getProduct(item.id));
+  if (validCart.length !== cart.length) {
+    cart = validCart;
+    persistCart();
+  }
+
+  if (!cart.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.innerHTML = "<h3>Your bag is taking a break.</h3><p>Find something you'll reach for every day.</p>";
+    container.append(empty);
+  } else {
+    cart.forEach(item => {
+      const product = getProduct(item.id);
+      const line = document.createElement("div");
+      line.className = "cart-line";
+
+      const image = document.createElement("img");
+      image.src = product.image;
+      image.alt = product.name;
+
+      const info = document.createElement("div");
+      info.className = "cart-line-info";
+
+      const name = document.createElement("h3");
+      name.textContent = product.name;
+
+      const color = document.createElement("p");
+      color.className = "muted";
+      color.textContent = product.color;
+
+      const price = document.createElement("div");
+      price.className = "cart-line-price";
+      price.textContent = money(product.price * item.quantity);
+
+      const quantity = document.createElement("div");
+      quantity.className = "quantity-control";
+
+      const minus = document.createElement("button");
+      minus.textContent = "−";
+      minus.setAttribute("aria-label", "Decrease quantity");
+      minus.addEventListener("click", () => changeQuantity(item.id, -1));
+
+      const count = document.createElement("span");
+      count.textContent = item.quantity;
+
+      const plus = document.createElement("button");
+      plus.textContent = "+";
+      plus.setAttribute("aria-label", "Increase quantity");
+      plus.disabled = item.quantity >= 10;
+      plus.addEventListener("click", () => changeQuantity(item.id, 1));
+
+      quantity.append(minus, count, plus);
+
+      const remove = document.createElement("button");
+      remove.className = "remove-item";
+      remove.textContent = "Remove";
+      remove.addEventListener("click", () => removeFromCart(item.id));
+
+      info.append(name, color, price, quantity, remove);
+      line.append(image, info);
+      container.append(line);
+    });
+  }
+
+  $("#cartSubtotal").textContent = money(cartTotal());
+  $("#checkoutButton").disabled = cart.length === 0;
+  updateCartCount();
+}
+
+function openCart() {
+  renderCart();
+  cartOverlay.hidden = false;
+  cartDrawer.hidden = false;
+  document.body.classList.add("no-scroll");
+}
+
+function closeCart() {
+  cartOverlay.hidden = true;
+  cartDrawer.hidden = true;
+  if (modalBackdrop.hidden) document.body.classList.remove("no-scroll");
+}
+
+function openModal(html) {
+  modalContent.innerHTML = html;
+  modalBackdrop.hidden = false;
+  document.body.classList.add("no-scroll");
+  $("#mainModal").scrollTop = 0;
+}
+
+function closeModal() {
+  modalBackdrop.hidden = true;
+  if (cartDrawer.hidden) document.body.classList.remove("no-scroll");
 }
 
 function showToast(message) {
   const toast = $("#toast");
   toast.textContent = message;
   toast.classList.add("show");
-
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2600);
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toast.classList.remove("show"), 2800);
 }
 
-function openModal(content) {
-  $("#modalContent").innerHTML = content;
-  $("#modalBackdrop").classList.add("open");
-  document.body.style.overflow = "hidden";
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
 }
 
-function closeModal() {
-  $("#modalBackdrop").classList.remove("open");
-  document.body.style.overflow = "";
-}
-
-function openCart() {
-  $("#cartOverlay").classList.add("open");
-  $("#cartDrawer").classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-
-function closeCart() {
-  $("#cartOverlay").classList.remove("open");
-  $("#cartDrawer").classList.remove("open");
-  document.body.style.overflow = "";
-}
-
-function cartQuantity() {
-  return cart.reduce((total, item) => total + item.qty, 0);
-}
-
-function cartSubtotal() {
-  return cart.reduce((total, item) => {
-    const product = products.find((p) => p.id === item.id);
-    return total + (product ? product.price * item.qty : 0);
-  }, 0);
-}
-
-// =============================================
-// PRODUCT CATALOGUE, SEARCH AND FILTERS
-// =============================================
-
-function renderProducts() {
-  let filtered = products.filter((product) => {
-    const categoryMatches =
-      selectedCategory === "All" ||
-      product.category === selectedCategory;
-
-    const text = (
-      product.name + " " +
-      product.category + " " +
-      product.type
-    ).toLowerCase();
-
-    return categoryMatches && text.includes(searchTerm.toLowerCase());
-  });
-
-  const sort = $("#sortSelect").value;
-
-  if (sort === "low") {
-    filtered.sort((a, b) => a.price - b.price);
-  } else if (sort === "high") {
-    filtered.sort((a, b) => b.price - a.price);
-  } else if (sort === "rating") {
-    filtered.sort((a, b) => b.rating - a.rating);
-  }
-
-  $("#productGrid").innerHTML = filtered.map((product) => {
-    const isSaved = wishlist.includes(product.id);
-    const discount = Math.round(
-      (1 - product.price / product.oldPrice) * 100
-    );
-
-    return `
-      <article class="product-card">
-        <div class="product-image">
-          <img
-            src="${product.image}"
-            alt="${escapeHTML(product.name)}"
-            loading="lazy"
-          >
-
-          <span class="product-badge">
-            ${escapeHTML(product.badge)}
-          </span>
-
-          <button
-            class="wishlist ${isSaved ? "active" : ""}"
-            data-wish="${product.id}"
-            aria-label="Toggle wishlist"
-          >${isSaved ? "♥" : "♡"}</button>
-        </div>
-
-        <div class="product-info">
-          <p class="product-meta">
-            ${escapeHTML(product.category)} · ${escapeHTML(product.type)}
-          </p>
-
-          <div class="product-title-row">
-            <h3 class="product-title">
-              ${escapeHTML(product.name)}
-            </h3>
-            <span class="rating">★ ${product.rating}</span>
-          </div>
-
-          <div class="price-row">
-            <span class="price">${money(product.price)}</span>
-            <span class="old-price">${money(product.oldPrice)}</span>
-            <span class="discount">${discount}% off</span>
-          </div>
-
-          <button class="add-button" data-add="${product.id}">
-            + Add to cart
-          </button>
-        </div>
-      </article>
-    `;
-  }).join("");
-
-  $("#emptyState").classList.toggle("hidden", filtered.length > 0);
-
-  document.querySelectorAll(".chip").forEach((button) => {
-    button.classList.toggle(
-      "active",
-      button.dataset.category === selectedCategory
-    );
-  });
-
-  document.querySelectorAll(".category-links [data-category]")
-    .forEach((link) => {
-      link.classList.toggle(
-        "active",
-        link.dataset.category === selectedCategory
-      );
-    });
-}
-
-function chooseCategory(category) {
-  selectedCategory = category;
-  renderProducts();
-
-  $("#products").scrollIntoView({ behavior: "smooth" });
-  $("#categoryNav").classList.remove("mobile-open");
-}
-
-// =============================================
-// SHOPPING CART
-// =============================================
-
-function addToCart(id) {
-  const product = products.find((p) => p.id === id);
+function openProductDetails(id) {
+  const product = getProduct(id);
   if (!product) return;
 
-  const existing = cart.find((item) => item.id === id);
-
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({ id, qty: 1 });
-  }
-
-  updateCart();
-  showToast("Added to your cart!");
-}
-
-function changeQuantity(id, change) {
-  const item = cart.find((entry) => entry.id === id);
-  if (!item) return;
-
-  item.qty += change;
-
-  if (item.qty <= 0) {
-    cart = cart.filter((entry) => entry.id !== id);
-  }
-
-  updateCart();
-}
-
-function updateCart() {
-  cart = cart.filter((item) =>
-    products.some((product) => product.id === item.id) &&
-    Number.isInteger(item.qty) &&
-    item.qty > 0
-  );
-
-  saveData("fs_cart", cart);
-
-  $("#cartCount").textContent = cartQuantity();
-  $("#drawerCount").textContent = cartQuantity();
-  $("#cartSubtotal").textContent = money(cartSubtotal());
-
-  $("#cartItems").innerHTML = cart.length
-    ? cart.map((item) => {
-        const product = products.find((p) => p.id === item.id);
-
-        return `
-          <div class="cart-row">
-            <img src="${product.image}" alt="${escapeHTML(product.name)}">
-
-            <div>
-              <h3>${escapeHTML(product.name)}</h3>
-              <p>${money(product.price)}</p>
-
-              <div class="quantity">
-                <button data-qty="${product.id}" data-change="-1"
-                  aria-label="Decrease quantity">−</button>
-                <span>${item.qty}</span>
-                <button data-qty="${product.id}" data-change="1"
-                  aria-label="Increase quantity">+</button>
-              </div>
-            </div>
-
-            <button class="remove-item" data-remove="${product.id}"
-              aria-label="Remove item">×</button>
-          </div>
-        `;
-      }).join("")
-    : `
-      <div class="empty-state">
-        <p style="font-size:32px">🛍</p>
-        <h3>Your cart is empty.</h3>
-        <p>Add products you love to get started.</p>
-      </div>
-    `;
-
-  $("#checkoutOpen").disabled = cart.length === 0;
-  $("#checkoutOpen").style.opacity = cart.length ? "1" : ".5";
-}
-
-// =============================================
-// LOGIN AND PROFILE
-// =============================================
-
-function renderHeaderUser() {
-  $("#loginOpen").innerHTML = user
-    ? `♙ <span>${escapeHTML(user.name.split(" ")[0])}</span>`
-    : `♙ <span>Login</span>`;
-}
-
-function showLogin() {
   openModal(`
-    <p class="eyebrow">WELCOME TO FASHION STORE</p>
-    <h2>${user ? "Your profile" : "Login / Create profile"}</h2>
-    <p class="modal-intro">
-      Enter your name and email to create a local demo profile.
-    </p>
-
-    <form id="loginForm">
-      <div class="field">
-        <label for="loginName">Full name</label>
-        <input id="loginName" required
-          value="${escapeHTML(user?.name || "")}"
-          placeholder="Enter your name">
-      </div>
-
-      <div class="field">
-        <label for="loginEmail">Email address</label>
-        <input id="loginEmail" type="email" required
-          value="${escapeHTML(user?.email || "")}"
-          placeholder="you@example.com">
-      </div>
-
-      <button type="submit" class="primary-button">
-        Save profile
-      </button>
-    </form>
-
-    <div class="notice">
-      Demo only: this form does not verify your identity or provide
-      secure authentication.
+    <p class="eyebrow">${escapeHTML(product.category)} · ${escapeHTML(product.color)}</p>
+    <h2 id="modalTitle">${escapeHTML(product.name)}</h2>
+    <p>${escapeHTML(product.description)}</p>
+    <div class="account-card">
+      <img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}"
+        style="width:100%;max-height:310px;object-fit:cover;background:#e9e6dc" />
+      <p>${escapeHTML(product.color)}</p>
+      <strong>${money(product.price)}</strong>
     </div>
-
-    ${user ? `
-      <button id="logoutButton" class="modal-link">Sign out</button>
-    ` : ""}
-  `);
-}
-
-// =============================================
-// SAVED DELIVERY ADDRESSES
-// =============================================
-
-function showAddresses() {
-  openModal(`
-    <p class="eyebrow">DELIVERY DETAILS</p>
-    <h2>Saved addresses</h2>
-    <p class="modal-intro">
-      Save an address for your demo orders.
-    </p>
-
-    <div>
-      ${addresses.length ? addresses.map((address, index) => `
-        <div class="address-card">
-          <strong>${escapeHTML(address.name)} · ${escapeHTML(address.type)}</strong>
-          <p>
-            ${escapeHTML(address.line)}<br>
-            ${escapeHTML(address.city)}, ${escapeHTML(address.state)}
-            - ${escapeHTML(address.pin)}<br>
-            Phone: ${escapeHTML(address.phone)}
-          </p>
-          <button data-delete-address="${index}">Remove address</button>
-        </div>
-      `).join("") : `
-        <div class="notice">You have no saved addresses yet.</div>
-      `}
+    <div class="form-actions">
+      <button class="button button-dark" id="detailAdd">Add to bag →</button>
+      <button class="button button-outline" id="detailWishlist">♡ Wishlist</button>
     </div>
-
-    <h3 style="font-size:15px;margin:20px 0 12px">Add an address</h3>
-
-    <form id="addressForm">
-      ${addressFields("addr")}
-
-      <div class="field">
-        <label for="addrType">Address type</label>
-        <select id="addrType">
-          <option>Home</option>
-          <option>Work</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <button class="primary-button" type="submit">Save address</button>
-    </form>
-  `);
-}
-
-function addressFields(prefix) {
-  return `
-    <div class="field">
-      <label for="${prefix}Name">Full name</label>
-      <input id="${prefix}Name" required
-        value="${prefix === "co" ? escapeHTML(user?.name || "") : ""}">
-    </div>
-
-    <div class="field">
-      <label for="${prefix}Phone">10-digit mobile number</label>
-      <input id="${prefix}Phone" required
-        inputmode="numeric" pattern="[0-9]{10}"
-        maxlength="10" placeholder="9876543210">
-    </div>
-
-    <div class="field">
-      <label for="${prefix}Line">House number, street and area</label>
-      <input id="${prefix}Line" required>
-    </div>
-
-    <div class="form-grid">
-      <div class="field">
-        <label for="${prefix}City">City</label>
-        <input id="${prefix}City" required>
-      </div>
-
-      <div class="field">
-        <label for="${prefix}State">State</label>
-        <input id="${prefix}State" required>
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="${prefix}Pin">6-digit PIN code</label>
-      <input id="${prefix}Pin" required
-        inputmode="numeric" pattern="[0-9]{6}"
-        maxlength="6">
-    </div>
-  `;
-}
-
-function readAddress(prefix) {
-  const get = (field) => $("#" + prefix + field).value.trim();
-
-  return {
-    name: get("Name"),
-    phone: get("Phone"),
-    line: get("Line"),
-    city: get("City"),
-    state: get("State"),
-    pin: get("Pin"),
-    type: prefix === "addr" ? $("#addrType").value : "Home"
-  };
-}
-
-// =============================================
-// CHECKOUT
-// =============================================
-
-function showCheckout() {
-  if (!cart.length) {
-    showToast("Your cart is empty.");
-    return;
-  }
-
-  const subtotal = cartSubtotal();
-  const delivery = subtotal >= 999 ? 0 : 49;
-  const tax = Math.round(subtotal * 0.05);
-  const total = subtotal + delivery + tax;
-
-  openModal(`
-    <p class="eyebrow">ALMOST YOURS</p>
-    <h2>Checkout</h2>
-    <p class="modal-intro">
-      Enter your delivery details and select a demo payment method.
-    </p>
-
-    <form id="checkoutForm">
-      <h3 style="font-size:14px;margin-bottom:12px">
-        1. Delivery address
-      </h3>
-
-      ${addresses.length ? `
-        <div class="field">
-          <label for="savedAddress">Choose a saved address</label>
-          <select id="savedAddress" required>
-            ${addresses.map((address, index) => `
-              <option value="${index}">
-                ${escapeHTML(address.name)} —
-                ${escapeHTML(address.city)}, ${escapeHTML(address.pin)}
-              </option>
-            `).join("")}
-            <option value="new">Enter a new address</option>
-          </select>
-        </div>
-
-        <div id="checkoutNewAddress" class="hidden">
-          ${addressFields("co")}
-        </div>
-
-        <button type="button" class="modal-link" id="manageAddresses">
-          Manage saved addresses
-        </button>
-      ` : `
-        <div class="notice">
-          Please enter your delivery details below.
-        </div>
-        ${addressFields("co")}
-      `}
-
-      <h3 style="font-size:14px;margin:20px 0 12px">
-        2. Payment method
-      </h3>
-
-      <div class="payment-options">
-        <label class="payment-option">
-          <input type="radio" name="payment" value="UPI demo" checked>
-          <span><strong>UPI</strong><br>
-            <small>Google Pay, PhonePe or Paytm (demo)</small>
-          </span>
-        </label>
-
-        <label class="payment-option">
-          <input type="radio" name="payment" value="Card demo">
-          <span><strong>Credit / debit card</strong><br>
-            <small>Demo selection only</small>
-          </span>
-        </label>
-
-        <label class="payment-option">
-          <input type="radio" name="payment" value="Cash on delivery">
-          <span><strong>Cash on delivery</strong><br>
-            <small>Simulated order placement</small>
-          </span>
-        </label>
-      </div>
-
-      <h3 style="font-size:14px;margin:20px 0 12px">
-        3. Order summary
-      </h3>
-
-      <div class="checkout-summary">
-        <div><span>Subtotal</span><span>${money(subtotal)}</span></div>
-        <div><span>Delivery</span><span>${delivery ? money(delivery) : "FREE"}</span></div>
-        <div><span>Estimated tax (5%)</span><span>${money(tax)}</span></div>
-        <div class="total"><span>Total</span><span>${money(total)}</span></div>
-      </div>
-
-      <div class="notice">
-        This is a front-end demo. No real payment is processed,
-        and no real order is sent to a delivery company.
-      </div>
-
-      <button type="submit" class="primary-button">
-        Place demo order · ${money(total)}
-      </button>
-    </form>
   `);
 
-  const savedAddress = $("#savedAddress");
+  $("#detailAdd").addEventListener("click", () => {
+    addToCart(id);
+    closeModal();
+  });
 
-  if (savedAddress) {
-    const toggleNewAddress = () => {
-      const useNew = savedAddress.value === "new";
-      const section = $("#checkoutNewAddress");
+  $("#detailWishlist").addEventListener("click", () => {
+    toggleWishlist(id);
+    closeModal();
+  });
+}
 
-      section.classList.toggle("hidden", !useNew);
+/* ---------------- DEMO OTP LOGIN ---------------- */
 
-      section.querySelectorAll("input").forEach((input) => {
-        input.disabled = !useNew;
-      });
+function showAuthStart(purpose = "login") {
+  authPurpose = purpose;
+  authChannel = "email";
+  authDestination = "";
+
+  openModal(`
+    <p class="eyebrow">YOUR SPACE AT STUDIO NILA</p>
+    <h2 id="modalTitle">${purpose === "register" ? "Create your space." : "Good to see you."}</h2>
+    <p>Use your email or mobile number to continue. Real OTP delivery will be connected when the backend is ready.</p>
+    <div class="auth-switch">
+      <button type="button" class="active" data-auth-channel="email">Email address</button>
+      <button type="button" data-auth-channel="phone">Mobile number</button>
+    </div>
+    <form id="authStartForm" class="form-stack">
+      <div class="field">
+        <label for="authDestination" id="authDestinationLabel">Email address</label>
+        <input id="authDestination" name="destination" type="email" autocomplete="email"
+          placeholder="you@example.com" required />
+        <span class="field-error" id="authError"></span>
+      </div>
+      <button class="button button-dark full-width" type="submit">Continue with OTP →</button>
+    </form>
+    <div class="demo-note">
+      <strong>Frontend demonstration:</strong> no email or SMS is sent. The demo accepts the code <strong>123456</strong>.
+      This is not secure authentication. Do not enter real passwords or sensitive information.
+    </div>
+    <p>${purpose === "register" ? "Already have a demo profile?" : "New here?"}
+      <button class="text-button" id="switchAuthPurpose">${purpose === "register" ? "Sign in" : "Create an account"}</button>
+    </p>
+  `);
+
+  $$("[data-auth-channel]", modalContent).forEach(button => {
+    button.addEventListener("click", () => {
+      authChannel = button.dataset.authChannel;
+      $$("[data-auth-channel]", modalContent).forEach(item =>
+        item.classList.toggle("active", item === button)
+      );
+
+      const input = $("#authDestination");
+      const label = $("#authDestinationLabel");
+
+      if (authChannel === "email") {
+        label.textContent = "Email address";
+        input.type = "email";
+        input.autocomplete = "email";
+        input.placeholder = "you@example.com";
+      } else {
+        label.textContent = "Mobile number";
+        input.type = "tel";
+        input.autocomplete = "tel";
+        input.placeholder = "+91 98765 43210";
+      }
+      input.value = "";
+      $("#authError").textContent = "";
+    });
+  });
+
+  $("#switchAuthPurpose").addEventListener("click", () => {
+    showAuthStart(authPurpose === "register" ? "login" : "register");
+  });
+
+  $("#authStartForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const input = $("#authDestination");
+    const value = input.value.trim();
+    const error = $("#authError");
+
+    if (authChannel === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      error.textContent = "Enter a valid email address.";
+      return;
+    }
+
+    if (authChannel === "phone" && value.replace(/\D/g, "").length < 10) {
+      error.textContent = "Enter a valid phone number.";
+      return;
+    }
+
+    authDestination = value;
+    showOtpVerification();
+  });
+}
+
+function showOtpVerification() {
+  const destinationLabel = authChannel === "email" ? "email address" : "mobile number";
+
+  openModal(`
+    <p class="eyebrow">ONE MORE STEP</p>
+    <h2 id="modalTitle">Enter your code.</h2>
+    <p>In the real version, a one-time code will be sent to your ${destinationLabel}: <strong>${escapeHTML(authDestination)}</strong>.</p>
+    <form id="otpForm" class="form-stack">
+      <div class="field">
+        <label for="otpCode">Six-digit demonstration code</label>
+        <input id="otpCode" class="form-input" inputmode="numeric" autocomplete="one-time-code"
+          maxlength="6" pattern="[0-9]{6}" placeholder="123456" required />
+        <span class="field-error" id="otpError"></span>
+      </div>
+      <button class="button button-dark full-width" type="submit">Verify and continue →</button>
+    </form>
+    <div class="demo-note">
+      Demo code: <strong>123456</strong>. No code was actually sent. Real OTP verification must be performed by the backend.
+    </div>
+    <div class="form-actions">
+      <button class="button button-outline" id="changeDestination" type="button">Go back</button>
+      <button class="button button-outline" id="resendDemo" type="button">Resend demo code</button>
+    </div>
+  `);
+
+  $("#otpForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const code = $("#otpCode").value.trim();
+
+    if (code !== "123456") {
+      $("#otpError").textContent = "Incorrect demo code. For this prototype, use 123456.";
+      return;
+    }
+
+    // DEMO ONLY. This does not prove ownership of the email or phone.
+    profile = {
+      name: profile?.name || "",
+      email: authChannel === "email" ? authDestination : (profile?.email || ""),
+      phone: authChannel === "phone" ? authDestination : (profile?.phone || ""),
+      demoAuthenticated: true
     };
 
-    savedAddress.addEventListener("change", toggleNewAddress);
-    toggleNewAddress();
-  }
+    saveStorage(STORAGE.profile, profile);
+    showToast("Demo sign-in complete. Real identity verification is not enabled.");
+    renderAccount("profile");
+  });
 
-  $("#manageAddresses")?.addEventListener("click", showAddresses);
+  $("#changeDestination").addEventListener("click", () => showAuthStart(authPurpose));
+  $("#resendDemo").addEventListener("click", () => {
+    showToast("Demo only: no email or SMS was sent.");
+  });
+
+  $("#otpCode").addEventListener("input", event => {
+    event.target.value = event.target.value.replace(/\D/g, "").slice(0, 6);
+  });
 }
 
-function placeDemoOrder(event) {
-  event.preventDefault();
+/* ---------------- PROFILE AND ACCOUNT ---------------- */
 
-  let address;
+function renderAccount(tab = currentAccountTab) {
+  currentAccountTab = tab;
 
-  const savedAddress = $("#savedAddress");
-
-  if (savedAddress && savedAddress.value !== "new") {
-    address = addresses[Number(savedAddress.value)];
-  } else {
-    address = readAddress("co");
-    address.type = "Home";
-
-    if (!addresses.some((item) =>
-      item.phone === address.phone && item.line === address.line
-    )) {
-      addresses.push(address);
-      saveData("fs_addresses", addresses);
-    }
-  }
-
-  if (!address) {
-    showToast("Please select a valid delivery address.");
+  if (!profile?.demoAuthenticated) {
+    showAuthStart("login");
     return;
   }
 
-  const subtotal = cartSubtotal();
-  const delivery = subtotal >= 999 ? 0 : 49;
-  const tax = Math.round(subtotal * 0.05);
-  const total = subtotal + delivery + tax;
+  let body = "";
 
-  const payment = new FormData(event.target).get("payment");
-
-  const order = {
-    id: "FS-" + Date.now().toString().slice(-8),
-    date: new Date().toLocaleDateString("en-IN"),
-    total,
-    items: cartQuantity(),
-    payment,
-    address,
-    status: "Order placed",
-    stage: 0,
-    products: cart.map((item) => ({ ...item }))
-  };
-
-  orders.push(order);
-  saveData("fs_orders", orders);
-
-  cart = [];
-  updateCart();
-
-  showOrderConfirmation(order);
-}
-
-// =============================================
-// ORDER CONFIRMATION AND ORDER TRACKING
-// =============================================
-
-function showOrderConfirmation(order) {
-  openModal(`
-    <div class="success-icon">✓</div>
-    <p class="eyebrow">ORDER CONFIRMED · DEMO</p>
-    <h2>Thank you for shopping!</h2>
-
-    <p class="modal-intro">
-      Your demo order has been created successfully.
-    </p>
-
-    <div class="order-card">
-      <div class="order-top">
-        <span>Order ID: ${escapeHTML(order.id)}</span>
-        <span class="status-pill">Order placed</span>
-      </div>
-
-      <p>Date: ${escapeHTML(order.date)}</p>
-      <p>Items: ${order.items}</p>
-      <p>Total: ${money(order.total)}</p>
-      <p>Payment: ${escapeHTML(order.payment)}</p>
-    </div>
-
-    <div class="notice">
-      Save your order ID to test the demo tracking feature.
-      No real payment or shipment has been created.
-    </div>
-
-    <button class="primary-button" id="trackNewOrder">
-      Track this order →
-    </button>
-
-    <button class="secondary-button full-width" id="continueAfterOrder">
-      Continue shopping
-    </button>
-  `);
-}
-
-function showOrders() {
-  openModal(`
-    <p class="eyebrow">YOUR PURCHASES</p>
-    <h2>Track your orders</h2>
-    <p class="modal-intro">
-      Enter the order ID shown in your demo checkout confirmation.
-    </p>
-
-    <form id="trackForm">
-      <div class="field">
-        <label for="trackOrderId">Order ID</label>
-        <input id="trackOrderId" required
-          placeholder="Example: FS-12345678"
-          value="${orders.length ? escapeHTML(orders[orders.length - 1].id) : ""}">
-      </div>
-      <button type="submit" class="primary-button">Track order →</button>
-    </form>
-
-    <div id="orderResults">
-      ${orders.length ? renderOrderHistory() : `
-        <div class="notice">
-          No orders yet. Your demo orders will appear here after checkout.
+  if (tab === "profile") {
+    body = `
+      <form id="profileForm" class="form-stack">
+        <div class="field"><label for="profileName">Your name</label>
+          <input id="profileName" value="${escapeHTML(profile.name || "")}" maxlength="80" placeholder="Your name" /></div>
+        <div class="field"><label>Email</label>
+          <input value="${escapeHTML(profile.email || "")}" readonly />
+          <span class="field-note">Demo field. A real account must verify email ownership.</span></div>
+        <div class="field"><label>Mobile number</label>
+          <input value="${escapeHTML(profile.phone || "")}" readonly />
+          <span class="field-note">Demo field. A real account must verify phone ownership.</span></div>
+        <button class="button button-dark full-width" type="submit">Save profile</button>
+      </form>
+    `;
+  } else if (tab === "addresses") {
+    body = `
+      <h2 id="modalTitle">Saved addresses.</h2>
+      <p>These addresses are stored in this browser for the prototype.</p>
+      <div id="addressList">${renderAddressCards()}</div>
+      <h3 style="font-family:var(--serif);font-weight:400;margin-top:26px">Add an address</h3>
+      <form id="addressForm" class="form-stack">
+        <div class="field"><label for="addressLabel">Address label</label><input id="addressLabel" required maxlength="40" placeholder="Home, College, Work" /></div>
+        <div class="field"><label for="addressName">Recipient name</label><input id="addressName" required maxlength="80" /></div>
+        <div class="field"><label for="addressPhone">Contact number</label><input id="addressPhone" required type="tel" maxlength="20" /></div>
+        <div class="field"><label for="addressLine">Street / house address</label><textarea id="addressLine" required maxlength="250"></textarea></div>
+        <div class="field"><label for="addressCity">City</label><input id="addressCity" required maxlength="80" /></div>
+        <div class="field"><label for="addressState">State</label><input id="addressState" required maxlength="80" /></div>
+        <div class="field"><label for="addressPin">PIN code</label><input id="addressPin" required inputmode="numeric" pattern="[0-9]{6}" maxlength="6" /></div>
+        <button class="button button-dark full-width" type="submit">Save address</button>
+      </form>
+    `;
+  } else if (tab === "orders") {
+    body = `
+      <h2 id="modalTitle">Your orders.</h2>
+      <p>Orders shown here are local demonstration records, not confirmed purchases.</p>
+      ${orders.length ? orders.slice().reverse().map(order => `
+        <div class="order-card">
+          <strong>Order ${escapeHTML(order.id)}</strong>
+          <p>${escapeHTML(order.date)} · ${money(order.total)}</p>
+          <span class="status-pill">${escapeHTML(order.status || "Demo order")}</span>
+          <p>${order.items.length} product line(s)</p>
+          <button class="button button-outline" data-track-order="${escapeHTML(order.id)}">View demo tracking</button>
         </div>
-      `}
+      `).join("") : `<div class="account-card"><strong>No orders yet.</strong><p>Your demonstration orders will appear here.</p></div>`}
+    `;
+  }
+
+  openModal(`
+    <p class="eyebrow">YOUR STUDIO NILA</p>
+    <h2 id="modalTitle">${tab === "profile" ? "Your profile." : tab === "addresses" ? "Your addresses." : "Your orders."}</h2>
+    <p>Signed in using the frontend demonstration. This is not a verified secure session.</p>
+    <nav class="account-nav" aria-label="Account sections">
+      <button data-account-tab="profile" class="${tab === "profile" ? "active" : ""}">Profile</button>
+      <button data-account-tab="addresses" class="${tab === "addresses" ? "active" : ""}">Addresses (${addresses.length})</button>
+      <button data-account-tab="orders" class="${tab === "orders" ? "active" : ""}">Orders (${orders.length})</button>
+    </nav>
+    ${body}
+    <div class="form-actions">
+      <button class="button button-outline" id="logoutButton">Sign out</button>
     </div>
+    <div class="demo-note">Do not use this prototype for real customer authentication or sensitive personal information.</div>
   `);
+
+  $$("[data-account-tab]", modalContent).forEach(button => {
+    button.addEventListener("click", () => renderAccount(button.dataset.accountTab));
+  });
+
+  const profileForm = $("#profileForm");
+  if (profileForm) {
+    profileForm.addEventListener("submit", event => {
+      event.preventDefault();
+      profile.name = $("#profileName").value.trim();
+      saveStorage(STORAGE.profile, profile);
+      showToast("Demo profile saved in this browser.");
+      renderAccount("profile");
+    });
+  }
+
+  const addressForm = $("#addressForm");
+  if (addressForm) {
+    addressForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const pin = $("#addressPin").value.trim();
+
+      if (!/^\d{6}$/.test(pin)) {
+        showToast("Enter a valid six-digit PIN code.");
+        return;
+      }
+
+      addresses.push({
+        id: `addr-${Date.now()}`,
+        label: $("#addressLabel").value.trim(),
+        name: $("#addressName").value.trim(),
+        phone: $("#addressPhone").value.trim(),
+        line: $("#addressLine").value.trim(),
+        city: $("#addressCity").value.trim(),
+        state: $("#addressState").value.trim(),
+        pin
+      });
+
+      saveStorage(STORAGE.addresses, addresses);
+      showToast("Demo address saved.");
+      renderAccount("addresses");
+    });
+  }
+
+  $$("[data-delete-address]", modalContent).forEach(button => {
+    button.addEventListener("click", () => {
+      addresses = addresses.filter(address => address.id !== button.dataset.deleteAddress);
+      saveStorage(STORAGE.addresses, addresses);
+      renderAccount("addresses");
+    });
+  });
+
+  $$("[data-track-order]", modalContent).forEach(button => {
+    button.addEventListener("click", () => showDemoTracking(button.dataset.trackOrder));
+  });
+
+  $("#logoutButton").addEventListener("click", () => {
+    profile = profile ? {
+      name: profile.name || "",
+      email: profile.email || "",
+      phone: profile.phone || "",
+      demoAuthenticated: false
+    } : null;
+
+    saveStorage(STORAGE.profile, profile);
+    showToast("Signed out of the frontend demo.");
+    showAuthStart("login");
+  });
 }
 
-function renderTrackingSteps(stage) {
-  const steps = ["Order placed", "Packed", "Shipped", "Delivered"];
+function renderAddressCards() {
+  if (!addresses.length) {
+    return `<div class="account-card"><strong>No saved addresses.</strong><p>Add one below to use it in the demo checkout.</p></div>`;
+  }
 
-  return `
-    <div class="tracking-steps">
-      ${steps.map((step, index) => `
-        <div class="track-step ${index > stage ? "pending" : ""}">
-          ${step}
-        </div>
-      `).join("")}
-    </div>
-  `;
-}
-
-function renderOrderHistory() {
-  return orders.slice().reverse().map((order) => `
-    <div class="order-card">
-      <div class="order-top">
-        <span>${escapeHTML(order.id)}</span>
-        <span class="status-pill">${escapeHTML(order.status)}</span>
-      </div>
-
-      <p>Placed ${escapeHTML(order.date)}</p>
-      <p>${order.items} item(s) · ${money(order.total)}</p>
-
-      ${renderTrackingSteps(order.stage || 0)}
-
-      <button class="modal-link" data-track="${escapeHTML(order.id)}">
-        View tracking
-      </button>
+  return addresses.map(address => `
+    <div class="address-card">
+      <strong>${escapeHTML(address.label)} · ${escapeHTML(address.name)}</strong>
+      <p>${escapeHTML(address.line)}</p>
+      <p>${escapeHTML(address.city)}, ${escapeHTML(address.state)} — ${escapeHTML(address.pin)}</p>
+      <p>${escapeHTML(address.phone)}</p>
+      <button class="text-button" type="button" data-delete-address="${escapeHTML(address.id)}">Remove address</button>
     </div>
   `).join("");
 }
 
-function trackOrder(orderId) {
-  const order = orders.find(
-    (item) => item.id.toUpperCase() === orderId.toUpperCase()
-  );
-
+function showDemoTracking(orderId) {
+  const order = orders.find(item => item.id === orderId);
   if (!order) {
-    $("#orderResults").innerHTML = `
-      <div class="notice">
-        No demo order found for <strong>${escapeHTML(orderId)}</strong>.
-        Please check the order ID.
-      </div>
-    `;
+    showToast("Demo order not found.");
     return;
   }
-
-  $("#orderResults").innerHTML = `
-    <div class="order-card">
-      <div class="order-top">
-        <span>${escapeHTML(order.id)}</span>
-        <span class="status-pill">${escapeHTML(order.status)}</span>
-      </div>
-
-      <p>Placed ${escapeHTML(order.date)}</p>
-      <p>Total: ${money(order.total)}</p>
-
-      <h3 style="font-size:13px;margin-top:18px">Delivery progress</h3>
-
-      ${renderTrackingSteps(order.stage || 0)}
-
-      <div class="notice">
-        This is locally stored demo tracking. Real tracking requires
-        a backend and delivery carrier integration.
-      </div>
-    </div>
-  `;
-}
-
-// =============================================
-// WISHLIST
-// =============================================
-
-function toggleWishlist(id) {
-  if (wishlist.includes(id)) {
-    wishlist = wishlist.filter((item) => item !== id);
-    showToast("Removed from wishlist.");
-  } else {
-    wishlist.push(id);
-    showToast("Added to wishlist!");
-  }
-
-  saveData("fs_wishlist", wishlist);
-  renderProducts();
-}
-
-// =============================================
-// EVENT LISTENERS
-// =============================================
-
-// Search products.
-$("#searchForm").addEventListener("submit", (event) => {
-  event.preventDefault();
-  searchTerm = $("#searchInput").value.trim();
-  renderProducts();
-  $("#products").scrollIntoView({ behavior: "smooth" });
-});
-
-$("#searchInput").addEventListener("input", () => {
-  searchTerm = $("#searchInput").value.trim();
-  renderProducts();
-});
-
-// Sorting.
-$("#sortSelect").addEventListener("change", renderProducts);
-
-// Product cards, cart actions and category navigation.
-document.addEventListener("click", (event) => {
-  const addButton = event.target.closest("[data-add]");
-  if (addButton) {
-    addToCart(Number(addButton.dataset.add));
-    return;
-  }
-
-  const wishlistButton = event.target.closest("[data-wish]");
-  if (wishlistButton) {
-    toggleWishlist(Number(wishlistButton.dataset.wish));
-    return;
-  }
-
-  const quantityButton = event.target.closest("[data-qty]");
-  if (quantityButton) {
-    changeQuantity(
-      Number(quantityButton.dataset.qty),
-      Number(quantityButton.dataset.change)
-    );
-    return;
-  }
-
-  const removeButton = event.target.closest("[data-remove]");
-  if (removeButton) {
-    cart = cart.filter(
-      (item) => item.id !== Number(removeButton.dataset.remove)
-    );
-    updateCart();
-    showToast("Item removed from cart.");
-    return;
-  }
-
-  const categoryLink = event.target.closest("[data-category]");
-  if (categoryLink) {
-    event.preventDefault();
-    chooseCategory(categoryLink.dataset.category);
-    return;
-  }
-
-  const deleteAddress = event.target.closest("[data-delete-address]");
-  if (deleteAddress) {
-    addresses.splice(Number(deleteAddress.dataset.deleteAddress), 1);
-    saveData("fs_addresses", addresses);
-    showAddresses();
-    showToast("Address removed.");
-    return;
-  }
-
-  const trackButton = event.target.closest("[data-track]");
-  if (trackButton) {
-    trackOrder(trackButton.dataset.track);
-  }
-});
-
-// Cart controls.
-$("#cartOpen").addEventListener("click", openCart);
-$("#cartClose").addEventListener("click", closeCart);
-$("#cartOverlay").addEventListener("click", closeCart);
-$("#continueShopping").addEventListener("click", closeCart);
-
-$("#checkoutOpen").addEventListener("click", () => {
-  if (!cart.length) return;
-  closeCart();
-  showCheckout();
-});
-
-// Login and order navigation.
-$("#loginOpen").addEventListener("click", showLogin);
-$("#ordersOpen").addEventListener("click", showOrders);
-
-$("#footerOrders").addEventListener("click", (event) => {
-  event.preventDefault();
-  showOrders();
-});
-
-$("#footerAddress").addEventListener("click", (event) => {
-  event.preventDefault();
-  showAddresses();
-});
-
-$("#footerReturns").addEventListener("click", (event) => {
-  event.preventDefault();
 
   openModal(`
-    <p class="eyebrow">CUSTOMER CARE</p>
-    <h2>Returns & refunds</h2>
-    <p class="modal-intro">
-      Sample return policy for this demonstration store.
-    </p>
-    <div class="notice">
-      Eligible products may be requested for return within seven days
-      of delivery under this sample policy. No real return request
-      is submitted by this demo website.
+    <p class="eyebrow">ORDER DETAILS · DEMO</p>
+    <h2 id="modalTitle">Your order journey.</h2>
+    <p>Order ${escapeHTML(order.id)} · ${escapeHTML(order.date)}</p>
+    <div class="account-card">
+      <strong>Order received</strong>
+      <p>This is a local demonstration status, not a live courier update.</p>
+      <span class="status-pill">Demo status: ${escapeHTML(order.status || "Order placed")}</span>
     </div>
-    <button class="primary-button" id="closeReturns">Got it</button>
+    <div class="demo-note">Live courier tracking will require a shipping provider and backend integration.</div>
+    <button class="button button-outline full-width" id="backToOrders">Back to orders</button>
   `);
+
+  $("#backToOrders").addEventListener("click", () => renderAccount("orders"));
+}
+
+/* ---------------- CHECKOUT DEMO ---------------- */
+
+function startCheckout() {
+  if (!cart.length) {
+    showToast("Your bag is empty.");
+    return;
+  }
+
+  closeCart();
+
+  if (!profile?.demoAuthenticated) {
+    showAuthStart("login");
+    showToast("Use the demo sign-in to continue.");
+    return;
+  }
+
+  checkoutStep = 1;
+  checkoutAddress = addresses[0]?.id || null;
+  checkoutPayment = "cod";
+  renderCheckout();
+}
+
+function renderCheckout() {
+  const total = cartTotal();
+  const shipping = total >= 1499 ? 0 : 79;
+  const grandTotal = total + shipping;
+
+  let content = `
+    <p class="eyebrow">A FEW MORE DETAILS</p>
+    <h2 id="modalTitle">Checkout.</h2>
+    <div class="checkout-steps">
+      <span class="${checkoutStep === 1 ? "active" : ""}">01 · Delivery</span>
+      <span class="${checkoutStep === 2 ? "active" : ""}">02 · Payment</span>
+      <span class="${checkoutStep === 3 ? "active" : ""}">03 · Review</span>
+    </div>
+  `;
+
+  if (checkoutStep === 1) {
+    content += `
+      <h3 style="font-family:var(--serif);font-weight:400">Where should we send it?</h3>
+      ${addresses.length ? `
+        <div class="form-stack">
+          ${addresses.map(address => `
+            <label class="radio-card">
+              <input type="radio" name="deliveryAddress" value="${escapeHTML(address.id)}"
+                ${checkoutAddress === address.id ? "checked" : ""} />
+              <div><strong>${escapeHTML(address.label)} · ${escapeHTML(address.name)}</strong>
+                <span>${escapeHTML(address.line)}, ${escapeHTML(address.city)}, ${escapeHTML(address.state)} ${escapeHTML(address.pin)}</span>
+                <span>${escapeHTML(address.phone)}</span>
+              </div>
+            </label>
+          `).join("")}
+        </div>
+        <button class="text-button" id="addAddressFromCheckout">+ Add another address</button>
+      ` : `
+        <p>You haven't saved a delivery address yet.</p>
+        <button class="button button-outline full-width" id="addAddressFromCheckout">Add a delivery address</button>
+      `}
+      <div class="form-actions">
+        <button class="button button-dark full-width" id="checkoutNext" ${addresses.length ? "" : "disabled"}>Continue to payment →</button>
+      </div>
+    `;
+  } else if (checkoutStep === 2) {
+    content += `
+      <h3 style="font-family:var(--serif);font-weight:400">Choose a payment method.</h3>
+      <div class="form-stack">
+        <label class="radio-card"><input type="radio" name="paymentMethod" value="cod" ${checkoutPayment === "cod" ? "checked" : ""} />
+          <div><strong>Cash on delivery</strong><span>Demo selection only. No order is sent to a delivery partner.</span></div>
+        </label>
+        <label class="radio-card"><input type="radio" name="paymentMethod" value="online" ${checkoutPayment === "online" ? "checked" : ""} />
+          <div><strong>Online payment (demo)</strong><span>No payment gateway is connected and no money will be charged.</span></div>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button class="button button-outline" id="checkoutBack">Back</button>
+        <button class="button button-dark" id="checkoutNext">Review order →</button>
+      </div>
+    `;
+  } else {
+    const selectedAddress = addresses.find(address => address.id === checkoutAddress);
+
+    content += `
+      <h3 style="font-family:var(--serif);font-weight:400">Make sure everything looks right.</h3>
+      <div class="account-card">
+        <strong>Deliver to</strong>
+        <p>${selectedAddress ? `${escapeHTML(selectedAddress.name)} · ${escapeHTML(selectedAddress.line)}, ${escapeHTML(selectedAddress.city)} ${escapeHTML(selectedAddress.pin)}` : "No address selected"}</p>
+        <button class="text-button" id="editDelivery">Change address</button>
+      </div>
+      <div class="account-card">
+        <strong>Items</strong>
+        ${cart.map(item => {
+          const product = getProduct(item.id);
+          return `<div class="checkout-summary"><span>${escapeHTML(product.name)} × ${item.quantity}</span><span>${money(product.price * item.quantity)}</span></div>`;
+        }).join("")}
+        <div class="checkout-summary"><span>Subtotal</span><span>${money(total)}</span></div>
+        <div class="checkout-summary"><span>Shipping</span><span>${shipping ? money(shipping) : "Free"}</span></div>
+        <div class="checkout-summary total"><span>Total</span><span>${money(grandTotal)}</span></div>
+      </div>
+      <div class="demo-note">
+        ${checkoutPayment === "online"
+          ? "Online payment is simulated. No payment provider is connected."
+          : "This is a demo cash-on-delivery selection. No courier will receive this order."}
+        Confirming creates a local demonstration order only.
+      </div>
+      <div class="form-actions">
+        <button class="button button-outline" id="checkoutBack">Back</button>
+        <button class="button button-dark" id="placeDemoOrder">Place demo order →</button>
+      </div>
+    `;
+  }
+
+  content += `
+    <div class="account-card">
+      <div class="checkout-summary"><span>Bag subtotal</span><span>${money(total)}</span></div>
+      <div class="checkout-summary"><span>Shipping</span><span>${shipping ? money(shipping) : "Free"}</span></div>
+      <div class="checkout-summary total"><span>Estimated total</span><span>${money(grandTotal)}</span></div>
+    </div>
+    <div class="demo-note">Frontend prototype only. Real checkout requires server-side inventory and price validation, verified payment, and a backend order record.</div>
+  `;
+
+  openModal(content);
+
+  $("#addAddressFromCheckout")?.addEventListener("click", () => renderAccount("addresses"));
+
+  $$('input[name="deliveryAddress"]', modalContent).forEach(input => {
+    input.addEventListener("change", () => { checkoutAddress = input.value; });
+  });
+
+  $$('input[name="paymentMethod"]', modalContent).forEach(input => {
+    input.addEventListener("change", () => { checkoutPayment = input.value; });
+  });
+
+  $("#checkoutNext")?.addEventListener("click", () => {
+    if (checkoutStep === 1) {
+      const selected = $('input[name="deliveryAddress"]:checked', modalContent);
+      if (selected) checkoutAddress = selected.value;
+
+      if (!addresses.some(address => address.id === checkoutAddress)) {
+        showToast("Choose or add a delivery address first.");
+        return;
+      }
+      checkoutStep = 2;
+    } else {
+      checkoutStep = 3;
+    }
+    renderCheckout();
+  });
+
+  $("#checkoutBack")?.addEventListener("click", () => {
+    checkoutStep = Math.max(1, checkoutStep - 1);
+    renderCheckout();
+  });
+
+  $("#editDelivery")?.addEventListener("click", () => {
+    checkoutStep = 1;
+    renderCheckout();
+  });
+
+  $("#placeDemoOrder")?.addEventListener("click", placeDemoOrder);
+}
+
+function placeDemoOrder() {
+  if (!profile?.demoAuthenticated) {
+    showToast("Please sign in again.");
+    showAuthStart("login");
+    return;
+  }
+
+  const address = addresses.find(item => item.id === checkoutAddress);
+  if (!address || !cart.length) {
+    showToast("Your delivery address or bag is missing.");
+    return;
+  }
+
+  const subtotal = cartTotal();
+  const shipping = subtotal >= 1499 ? 0 : 79;
+
+  const order = {
+    id: `SN-${Date.now().toString().slice(-8)}`,
+    date: new Date().toLocaleDateString("en-IN"),
+    items: cart.map(item => ({
+      id: item.id,
+      quantity: item.quantity,
+      price: getProduct(item.id)?.price || 0
+    })),
+    total: subtotal + shipping,
+    address: { ...address },
+    paymentMethod: checkoutPayment,
+    status: "Demo order placed"
+  };
+
+  orders.push(order);
+  saveStorage(STORAGE.orders, orders);
+
+  cart = [];
+  persistCart();
+  renderCart();
+
+  openModal(`
+    <p class="eyebrow">THANK YOU · DEMO ORDER</p>
+    <h2 id="modalTitle">That's a wrap.</h2>
+    <p>Your frontend demo order has been created. No payment was processed and no order was sent to a real store or courier.</p>
+    <div class="account-card">
+      <strong>Order ${escapeHTML(order.id)}</strong>
+      <p>Order total: ${money(order.total)}</p>
+      <p>Placed on ${escapeHTML(order.date)}</p>
+      <span class="status-pill">Demo order saved in this browser</span>
+    </div>
+    <div class="form-actions">
+      <button class="button button-dark" id="viewNewOrder">View my orders</button>
+      <button class="button button-outline" id="continueShopping">Continue shopping</button>
+    </div>
+  `);
+
+  $("#viewNewOrder").addEventListener("click", () => renderAccount("orders"));
+  $("#continueShopping").addEventListener("click", closeModal);
+}
+
+/* ---------------- EVENT WIRING ---------------- */
+
+$("#cartButton").addEventListener("click", openCart);
+$("#accountButton").addEventListener("click", () => renderAccount("profile"));
+$("#closeModal").addEventListener("click", closeModal);
+$("#checkoutButton").addEventListener("click", startCheckout);
+$("#closeSearch").addEventListener("click", () => {
+  $("#searchPanel").hidden = true;
+});
+$("#searchToggle").addEventListener("click", () => {
+  $("#searchPanel").hidden = !$("#searchPanel").hidden;
+  if (!$("#searchPanel").hidden) $("#searchInput").focus();
 });
 
-// Modal close buttons.
-$("#modalClose").addEventListener("click", closeModal);
-
-$("#modalBackdrop").addEventListener("click", (event) => {
-  if (event.target === $("#modalBackdrop")) closeModal();
-});
-
-// Mobile navigation.
-$("#menuToggle").addEventListener("click", () => {
-  $("#categoryNav").classList.toggle("mobile-open");
-});
-
-// Newsletter demo.
-$("#newsletterForm").addEventListener("submit", (event) => {
+$("#searchForm").addEventListener("submit", event => {
   event.preventDefault();
-  showToast("Thanks for subscribing! (Demo only)");
-  event.target.reset();
+  searchTerm = $("#searchInput").value;
+  renderProducts();
+  $("#shop").scrollIntoView({ behavior: "smooth" });
 });
 
-// Forms generated inside the modal.
-$("#modalContent").addEventListener("submit", (event) => {
-  const form = event.target;
-
-  if (form.id === "loginForm") {
-    event.preventDefault();
-
-    user = {
-      name: $("#loginName").value.trim(),
-      email: $("#loginEmail").value.trim()
-    };
-
-    saveData("fs_user", user);
-    renderHeaderUser();
-    closeModal();
-    showToast("Demo profile saved.");
-    return;
-  }
-
-  if (form.id === "addressForm") {
-    event.preventDefault();
-
-    const address = readAddress("addr");
-    address.type = $("#addrType").value;
-
-    addresses.push(address);
-    saveData("fs_addresses", addresses);
-
-    showAddresses();
-    showToast("Address saved.");
-    return;
-  }
-
-  if (form.id === "checkoutForm") {
-    placeDemoOrder(event);
-    return;
-  }
-
-  if (form.id === "trackForm") {
-    event.preventDefault();
-    trackOrder($("#trackOrderId").value.trim());
-  }
+$("#searchInput").addEventListener("input", event => {
+  searchTerm = event.target.value;
+  renderProducts();
 });
 
-// Buttons inside dynamically generated modal content.
-$("#modalContent").addEventListener("click", (event) => {
-  if (event.target.id === "logoutButton") {
-    user = null;
-
-    try {
-      localStorage.removeItem("fs_user");
-    } catch {}
-
-    renderHeaderUser();
-    closeModal();
-    showToast("Signed out on this device.");
-  }
-
-  if (event.target.id === "trackNewOrder") {
-    closeModal();
-    showOrders();
-  }
-
-  if (event.target.id === "continueAfterOrder") {
-    closeModal();
-    $("#products").scrollIntoView({ behavior: "smooth" });
-  }
-
-  if (event.target.id === "closeReturns") {
-    closeModal();
-  }
+$("#sortSelect").addEventListener("change", renderProducts);
+$("#resetFilters").addEventListener("click", () => {
+  searchTerm = "";
+  activeCategory = "All";
+  $("#searchInput").value = "";
+  $("#sortSelect").value = "featured";
+  setCategory("All");
 });
 
-// Escape key closes overlays.
-document.addEventListener("keydown", (event) => {
+$$("[data-category]").forEach(button => {
+  button.addEventListener("click", () => {
+    setCategory(button.dataset.category);
+    $("#shop").scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+$$("[data-nav-category]").forEach(link => {
+  link.addEventListener("click", () => setCategory(link.dataset.navCategory));
+});
+
+$$("[data-footer-category]").forEach(link => {
+  link.addEventListener("click", () => setCategory(link.dataset.footerCategory));
+});
+
+$$("[data-open-account]").forEach(button => {
+  button.addEventListener("click", () => renderAccount(button.dataset.openAccount));
+});
+
+$$("[data-close='cart']").forEach(button => button.addEventListener("click", closeCart));
+cartOverlay.addEventListener("click", closeCart);
+
+modalBackdrop.addEventListener("click", event => {
+  if (event.target === modalBackdrop) closeModal();
+});
+
+document.addEventListener("keydown", event => {
   if (event.key === "Escape") {
-    closeCart();
     closeModal();
+    closeCart();
+    $("#searchPanel").hidden = true;
   }
 });
 
-// =============================================
-// INITIALISE THE WEBSITE
-// =============================================
+$("#newsletterForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const email = $("#newsletterEmail").value.trim();
+  $("#newsletterMessage").textContent =
+    `Thanks for your interest. Newsletter signup is a frontend demo; ${email} has not been subscribed.`;
+  $("#newsletterForm").reset();
+});
 
-renderProducts();
-updateCart();
-renderHeaderUser();
+$("#year").textContent = new Date().getFullYear();
+
+function initialize() {
+  // Discard malformed or unavailable product references in stored demo cart.
+  cart = Array.isArray(cart)
+    ? cart.filter(item =>
+        getProduct(item.id) &&
+        Number.isInteger(item.quantity) &&
+        item.quantity > 0 &&
+        item.quantity <= 10
+      )
+    : [];
+
+  wishlist = Array.isArray(wishlist)
+    ? wishlist.filter(id => getProduct(id))
+    : [];
+
+  addresses = Array.isArray(addresses) ? addresses : [];
+  orders = Array.isArray(orders) ? orders : [];
+
+  persistCart();
+  renderProducts();
+  renderCart();
+}
+
+initialize();
