@@ -1,4 +1,3 @@
-
 "use strict";
 
 /*
@@ -53,6 +52,8 @@ function saveStorage(key, value) {
     return false;
   }
 }
+
+/* ---------------- PRODUCT CATALOGUE ---------------- */
 
 const products = [
   {
@@ -142,8 +143,186 @@ const products = [
     badge: "Easy layer",
     image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=700&q=80",
     description: "A simple layer that fits neatly into a well-loved everyday wardrobe."
+  },
+  {
+    id: "wide-leg-trousers",
+    name: "The easy wide-leg trouser",
+    category: "Clothing",
+    color: "Stone",
+    price: 1490,
+    oldPrice: 1790,
+    badge: "Easy favourite",
+    image: "https://images.unsplash.com/photo-1506629905607-d9a4d7f1b1f2?auto=format&fit=crop&w=700&q=80",
+    description: "A relaxed trouser with an easy drape for everyday dressing."
+  },
+  {
+    id: "oversized-shirt",
+    name: "The oversized cotton shirt",
+    category: "Clothing",
+    color: "Blue stripe",
+    price: 1390,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=80",
+    description: "A roomy cotton shirt that layers beautifully through the week."
+  },
+  {
+    id: "ribbed-tank",
+    name: "The everyday ribbed tank",
+    category: "Clothing",
+    color: "Oat",
+    price: 490,
+    oldPrice: null,
+    badge: "Under ₹500",
+    image: "https://images.unsplash.com/photo-1564257577-6a2f9c8f5f2c?auto=format&fit=crop&w=700&q=80",
+    description: "A simple ribbed layer for warm days and easy outfits."
+  },
+  {
+    id: "linen-shorts",
+    name: "The linen weekend short",
+    category: "Clothing",
+    color: "Natural",
+    price: 990,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=700&q=80",
+    description: "Lightweight shorts made for relaxed weekends and warm weather."
+  },
+  {
+    id: "button-midi-skirt",
+    name: "The button-front midi skirt",
+    category: "Clothing",
+    color: "Olive",
+    price: 1290,
+    oldPrice: 1490,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=700&q=80",
+    description: "A versatile midi skirt with a simple, timeless shape."
+  },
+  {
+    id: "soft-cardigan",
+    name: "The soft-touch cardigan",
+    category: "Clothing",
+    color: "Mushroom",
+    price: 1690,
+    oldPrice: null,
+    badge: "Layer up",
+    image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=700&q=80",
+    description: "A cosy layer for cool evenings, travel and slow mornings."
+  },
+  {
+    id: "canvas-cap",
+    name: "The everyday canvas cap",
+    category: "Accessories",
+    color: "Washed olive",
+    price: 590,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=80",
+    description: "A laid-back cap that adds an easy finish to casual looks."
+  },
+  {
+    id: "shoulder-bag",
+    name: "The soft shoulder bag",
+    category: "Accessories",
+    color: "Chocolate",
+    price: 1490,
+    oldPrice: 1690,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=700&q=80",
+    description: "A clean, versatile shoulder bag for everyday essentials."
+  },
+  {
+    id: "minimal-wallet",
+    name: "The minimal card wallet",
+    category: "Accessories",
+    color: "Tan",
+    price: 490,
+    oldPrice: null,
+    badge: "Small essential",
+    image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=700&q=80",
+    description: "A compact wallet designed to keep the everyday basics together."
+  },
+  {
+    id: "gold-hoops",
+    name: "The little gold hoops",
+    category: "Accessories",
+    color: "Gold tone",
+    price: 390,
+    oldPrice: null,
+    badge: "Under ₹400",
+    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=700&q=80",
+    description: "Simple hoop earrings for an understated everyday finish."
+  },
+  {
+    id: "everyday-belt",
+    name: "The everyday belt",
+    category: "Accessories",
+    color: "Cognac",
+    price: 690,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",
+    description: "A classic belt that works with denim, trousers and dresses."
+  },
+  {
+    id: "weekend-sandals",
+    name: "The weekend sandal",
+    category: "Essentials",
+    color: "Caramel",
+    price: 1190,
+    oldPrice: 1390,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=700&q=80",
+    description: "An easy warm-weather sandal with a simple everyday profile."
+  },
+  {
+    id: "canvas-sneakers",
+    name: "The canvas slip-on",
+    category: "Essentials",
+    color: "Ecru",
+    price: 990,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=700&q=80",
+    description: "A lightweight slip-on for quick errands and casual days."
+  },
+  {
+    id: "crew-socks",
+    name: "The everyday crew socks",
+    category: "Essentials",
+    color: "Cream mix",
+    price: 290,
+    oldPrice: null,
+    badge: "Everyday essential",
+    image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=700&q=80",
+    description: "Soft everyday socks that make the small things feel considered."
+  },
+  {
+    id: "water-bottle",
+    name: "The carry-along bottle",
+    category: "Essentials",
+    color: "Sage",
+    price: 590,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=80",
+    description: "A reusable bottle for your commute, desk and weekend plans."
+  },
+  {
+    id: "travel-pouch",
+    name: "The little travel pouch",
+    category: "Essentials",
+    color: "Natural canvas",
+    price: 390,
+    oldPrice: null,
+    badge: "Small essential",
+    image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=80",
+    description: "A handy pouch for cables, cosmetics and the little things."
   }
 ];
+
+/* ---------------- SAVED STATE ---------------- */
 
 let cart = readStorage(STORAGE.cart, []);
 let wishlist = readStorage(STORAGE.wishlist, []);
@@ -160,7 +339,6 @@ let authPurpose = "login";
 let checkoutAddress = null;
 let checkoutStep = 1;
 let checkoutPayment = "cod";
-let checkoutDraft = null;
 let currentAccountTab = "profile";
 
 const grid = $("#productGrid");
@@ -169,6 +347,8 @@ const modalBackdrop = $("#modalBackdrop");
 const modalContent = $("#modalContent");
 const cartDrawer = $("#cartDrawer");
 const cartOverlay = $("#cartOverlay");
+
+/* ---------------- CART HELPERS ---------------- */
 
 function persistCart() {
   saveStorage(STORAGE.cart, cart);
@@ -185,12 +365,18 @@ function getProduct(id) {
   return products.find(product => product.id === id);
 }
 
+function cartItemKey(item) {
+  return `${item.id}::${item.size || ""}::${item.selectedColor || ""}`;
+}
+
 function cartTotal() {
   return cart.reduce((total, item) => {
     const product = getProduct(item.id);
     return total + (product ? product.price * item.quantity : 0);
   }, 0);
 }
+
+/* ---------------- PRODUCT DISPLAY, SEARCH AND SORT ---------------- */
 
 function visibleProducts() {
   let result = [...products];
@@ -201,6 +387,7 @@ function visibleProducts() {
 
   if (searchTerm.trim()) {
     const term = searchTerm.toLowerCase().trim();
+
     result = result.filter(product =>
       `${product.name} ${product.category} ${product.color} ${product.description}`
         .toLowerCase()
@@ -209,18 +396,29 @@ function visibleProducts() {
   }
 
   const sort = $("#sortSelect").value;
-  if (sort === "price-low") result.sort((a, b) => a.price - b.price);
-  if (sort === "price-high") result.sort((a, b) => b.price - a.price);
-  if (sort === "name") result.sort((a, b) => a.name.localeCompare(b.name));
+
+  if (sort === "price-low") {
+    result.sort((a, b) => a.price - b.price);
+  }
+
+  if (sort === "price-high") {
+    result.sort((a, b) => b.price - a.price);
+  }
+
+  if (sort === "name") {
+    result.sort((a, b) => a.name.localeCompare(b.name));
+  }
 
   return result;
 }
 
 function renderProducts() {
   grid.replaceChildren();
+
   const result = visibleProducts();
 
   $("#emptyState").hidden = result.length > 0;
+
   $("#resultsLabel").textContent =
     searchTerm || activeCategory !== "All"
       ? `${result.length} ${result.length === 1 ? "piece" : "pieces"} found`
@@ -234,8 +432,10 @@ function renderProducts() {
     const wishButton = $(".wishlist-button", fragment);
 
     card.dataset.productId = product.id;
+
     image.src = product.image;
     image.alt = product.name;
+
     image.onerror = () => {
       image.style.opacity = ".35";
       image.alt = `${product.name} — product image unavailable`;
@@ -248,7 +448,8 @@ function renderProducts() {
     $(".product-color", fragment).textContent = product.color;
     $(".product-name", fragment).textContent = product.name;
 
-    $(".product-price", fragment).innerHTML = "";
+    $(".product-price", fragment).replaceChildren();
+
     const currentPrice = document.createElement("span");
     currentPrice.textContent = money(product.price);
     $(".product-price", fragment).append(currentPrice);
@@ -261,17 +462,27 @@ function renderProducts() {
     }
 
     const saved = wishlist.includes(product.id);
+
     wishButton.classList.toggle("is-saved", saved);
     wishButton.textContent = saved ? "♥" : "♡";
+
     wishButton.setAttribute(
       "aria-label",
       saved ? "Remove from wishlist" : "Add to wishlist"
     );
 
-    $(".quick-add", fragment).addEventListener("click", () => addToCart(product.id));
-    wishButton.addEventListener("click", () => toggleWishlist(product.id));
+    $(".quick-add", fragment).addEventListener("click", () => {
+      addToCart(product.id);
+    });
 
-    image.addEventListener("click", () => openProductDetails(product.id));
+    wishButton.addEventListener("click", () => {
+      toggleWishlist(product.id);
+    });
+
+    image.addEventListener("click", () => {
+      openProductDetails(product.id);
+    });
+
     image.style.cursor = "pointer";
 
     grid.append(fragment);
@@ -280,35 +491,56 @@ function renderProducts() {
 
 function setCategory(category) {
   activeCategory = category;
+
   $$(".category-tile").forEach(button => {
-    button.classList.toggle("active", button.dataset.category === category);
+    button.classList.toggle(
+      "active",
+      button.dataset.category === category
+    );
   });
+
   renderProducts();
 }
 
-function addToCart(id) {
+/* ---------------- CART ACTIONS ---------------- */
+
+function addToCart(id, size = "", selectedColor = "") {
   const product = getProduct(id);
   if (!product) return;
 
-  const existing = cart.find(item => item.id === id);
+  const key = cartItemKey({
+    id,
+    size,
+    selectedColor
+  });
+
+  const existing = cart.find(item => cartItemKey(item) === key);
+
   if (existing) {
     existing.quantity = Math.min(existing.quantity + 1, 10);
   } else {
-    cart.push({ id, quantity: 1 });
+    cart.push({
+      id,
+      quantity: 1,
+      size,
+      selectedColor
+    });
   }
 
   persistCart();
   renderCart();
+
   showToast(`${product.name} added to your bag.`);
 }
 
-function changeQuantity(id, amount) {
-  const item = cart.find(entry => entry.id === id);
+function changeQuantity(key, amount) {
+  const item = cart.find(entry => cartItemKey(entry) === key);
   if (!item) return;
 
   item.quantity += amount;
+
   if (item.quantity <= 0) {
-    cart = cart.filter(entry => entry.id !== id);
+    cart = cart.filter(entry => cartItemKey(entry) !== key);
   } else {
     item.quantity = Math.min(item.quantity, 10);
   }
@@ -317,8 +549,9 @@ function changeQuantity(id, amount) {
   renderCart();
 }
 
-function removeFromCart(id) {
-  cart = cart.filter(item => item.id !== id);
+function removeFromCart(key) {
+  cart = cart.filter(item => cartItemKey(item) !== key);
+
   persistCart();
   renderCart();
 }
@@ -341,6 +574,7 @@ function renderCart() {
   container.replaceChildren();
 
   const validCart = cart.filter(item => getProduct(item.id));
+
   if (validCart.length !== cart.length) {
     cart = validCart;
     persistCart();
@@ -349,17 +583,26 @@ function renderCart() {
   if (!cart.length) {
     const empty = document.createElement("div");
     empty.className = "empty-state";
-    empty.innerHTML = "<h3>Your bag is taking a break.</h3><p>Find something you'll reach for every day.</p>";
+    empty.innerHTML =
+      "<h3>Your bag is taking a break.</h3><p>Find something you'll reach for every day.</p>";
+
     container.append(empty);
   } else {
     cart.forEach(item => {
       const product = getProduct(item.id);
+
       const line = document.createElement("div");
       line.className = "cart-line";
 
       const image = document.createElement("img");
       image.src = product.image;
       image.alt = product.name;
+
+      image.onerror = () => {
+        image.removeAttribute("src");
+        image.alt = `${product.name} image unavailable`;
+        image.style.background = "#e9e6dc";
+      };
 
       const info = document.createElement("div");
       info.className = "cart-line-info";
@@ -369,7 +612,11 @@ function renderCart() {
 
       const color = document.createElement("p");
       color.className = "muted";
-      color.textContent = product.color;
+
+      color.textContent = [
+        item.size ? `Size ${item.size}` : "",
+        item.selectedColor || product.color
+      ].filter(Boolean).join(" · ");
 
       const price = document.createElement("div");
       price.className = "cart-line-price";
@@ -378,10 +625,14 @@ function renderCart() {
       const quantity = document.createElement("div");
       quantity.className = "quantity-control";
 
+      const lineKey = cartItemKey(item);
+
       const minus = document.createElement("button");
       minus.textContent = "−";
       minus.setAttribute("aria-label", "Decrease quantity");
-      minus.addEventListener("click", () => changeQuantity(item.id, -1));
+      minus.addEventListener("click", () => {
+        changeQuantity(lineKey, -1);
+      });
 
       const count = document.createElement("span");
       count.textContent = item.quantity;
@@ -390,14 +641,18 @@ function renderCart() {
       plus.textContent = "+";
       plus.setAttribute("aria-label", "Increase quantity");
       plus.disabled = item.quantity >= 10;
-      plus.addEventListener("click", () => changeQuantity(item.id, 1));
+      plus.addEventListener("click", () => {
+        changeQuantity(lineKey, 1);
+      });
 
       quantity.append(minus, count, plus);
 
       const remove = document.createElement("button");
       remove.className = "remove-item";
       remove.textContent = "Remove";
-      remove.addEventListener("click", () => removeFromCart(item.id));
+      remove.addEventListener("click", () => {
+        removeFromCart(lineKey);
+      });
 
       info.append(name, color, price, quantity, remove);
       line.append(image, info);
@@ -407,40 +662,57 @@ function renderCart() {
 
   $("#cartSubtotal").textContent = money(cartTotal());
   $("#checkoutButton").disabled = cart.length === 0;
+
   updateCartCount();
 }
 
 function openCart() {
   renderCart();
+
   cartOverlay.hidden = false;
   cartDrawer.hidden = false;
+
   document.body.classList.add("no-scroll");
 }
 
 function closeCart() {
   cartOverlay.hidden = true;
   cartDrawer.hidden = true;
-  if (modalBackdrop.hidden) document.body.classList.remove("no-scroll");
+
+  if (modalBackdrop.hidden) {
+    document.body.classList.remove("no-scroll");
+  }
 }
+
+/* ---------------- MODAL AND NOTIFICATIONS ---------------- */
 
 function openModal(html) {
   modalContent.innerHTML = html;
   modalBackdrop.hidden = false;
+
   document.body.classList.add("no-scroll");
   $("#mainModal").scrollTop = 0;
 }
 
 function closeModal() {
   modalBackdrop.hidden = true;
-  if (cartDrawer.hidden) document.body.classList.remove("no-scroll");
+
+  if (cartDrawer.hidden) {
+    document.body.classList.remove("no-scroll");
+  }
 }
 
 function showToast(message) {
   const toast = $("#toast");
+
   toast.textContent = message;
   toast.classList.add("show");
+
   clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => toast.classList.remove("show"), 2800);
+
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2800);
 }
 
 function escapeHTML(value) {
@@ -453,28 +725,80 @@ function escapeHTML(value) {
   })[character]);
 }
 
+/* ---------------- PRODUCT DETAILS ---------------- */
+
 function openProductDetails(id) {
   const product = getProduct(id);
   if (!product) return;
 
   openModal(`
-    <p class="eyebrow">${escapeHTML(product.category)} · ${escapeHTML(product.color)}</p>
+    <p class="eyebrow">
+      ${escapeHTML(product.category)} · ${escapeHTML(product.color)}
+    </p>
+
     <h2 id="modalTitle">${escapeHTML(product.name)}</h2>
+
     <p>${escapeHTML(product.description)}</p>
+
     <div class="account-card">
-      <img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.name)}"
-        style="width:100%;max-height:310px;object-fit:cover;background:#e9e6dc" />
+      <img
+        src="${escapeHTML(product.image)}"
+        alt="${escapeHTML(product.name)}"
+        style="width:100%;max-height:310px;object-fit:cover;background:#e9e6dc"
+        onerror="this.style.display='none'"
+      />
+
       <p>${escapeHTML(product.color)}</p>
       <strong>${money(product.price)}</strong>
     </div>
+
+    <div class="form-stack" style="margin-top:18px">
+      <div class="field">
+        <label for="detailSize">Size</label>
+
+        <select id="detailSize" class="form-input">
+          <option value="One size">One size</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M" selected>M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="detailColor">Colour</label>
+
+        <select id="detailColor" class="form-input">
+          <option value="${escapeHTML(product.color)}" selected>
+            ${escapeHTML(product.color)}
+          </option>
+          <option value="Ivory">Ivory</option>
+          <option value="Black">Black</option>
+          <option value="Olive">Olive</option>
+          <option value="Sand">Sand</option>
+        </select>
+      </div>
+    </div>
+
     <div class="form-actions">
-      <button class="button button-dark" id="detailAdd">Add to bag →</button>
-      <button class="button button-outline" id="detailWishlist">♡ Wishlist</button>
+      <button class="button button-dark" id="detailAdd">
+        Add to bag →
+      </button>
+
+      <button class="button button-outline" id="detailWishlist">
+        ♡ Wishlist
+      </button>
     </div>
   `);
 
   $("#detailAdd").addEventListener("click", () => {
-    addToCart(id);
+    addToCart(
+      id,
+      $("#detailSize").value,
+      $("#detailColor").value
+    );
+
     closeModal();
   });
 
@@ -493,36 +817,72 @@ function showAuthStart(purpose = "login") {
 
   openModal(`
     <p class="eyebrow">YOUR SPACE AT STUDIO NILA</p>
-    <h2 id="modalTitle">${purpose === "register" ? "Create your space." : "Good to see you."}</h2>
-    <p>Use your email or mobile number to continue. Real OTP delivery will be connected when the backend is ready.</p>
+
+    <h2 id="modalTitle">
+      ${purpose === "register" ? "Create your space." : "Good to see you."}
+    </h2>
+
+    <p>
+      Use your email or mobile number to continue.
+      Real OTP delivery will be connected when the backend is ready.
+    </p>
+
     <div class="auth-switch">
-      <button type="button" class="active" data-auth-channel="email">Email address</button>
-      <button type="button" data-auth-channel="phone">Mobile number</button>
+      <button type="button" class="active" data-auth-channel="email">
+        Email address
+      </button>
+
+      <button type="button" data-auth-channel="phone">
+        Mobile number
+      </button>
     </div>
+
     <form id="authStartForm" class="form-stack">
       <div class="field">
-        <label for="authDestination" id="authDestinationLabel">Email address</label>
-        <input id="authDestination" name="destination" type="email" autocomplete="email"
-          placeholder="you@example.com" required />
+        <label for="authDestination" id="authDestinationLabel">
+          Email address
+        </label>
+
+        <input
+          id="authDestination"
+          name="destination"
+          type="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+          required
+        />
+
         <span class="field-error" id="authError"></span>
       </div>
-      <button class="button button-dark full-width" type="submit">Continue with OTP →</button>
+
+      <button class="button button-dark full-width" type="submit">
+        Continue with OTP →
+      </button>
     </form>
+
     <div class="demo-note">
-      <strong>Frontend demonstration:</strong> no email or SMS is sent. The demo accepts the code <strong>123456</strong>.
-      This is not secure authentication. Do not enter real passwords or sensitive information.
+      <strong>Frontend demonstration:</strong>
+      no email or SMS is sent. The demo accepts the code
+      <strong>123456</strong>. This is not secure authentication.
+      Do not enter real passwords or sensitive information.
     </div>
-    <p>${purpose === "register" ? "Already have a demo profile?" : "New here?"}
-      <button class="text-button" id="switchAuthPurpose">${purpose === "register" ? "Sign in" : "Create an account"}</button>
+
+    <p>
+      ${purpose === "register" ? "Already have a demo profile?" : "New here?"}
+
+      <button class="text-button" id="switchAuthPurpose">
+        ${purpose === "register" ? "Sign in" : "Create an account"}
+      </button>
     </p>
   `);
 
   $$("[data-auth-channel]", modalContent).forEach(button => {
     button.addEventListener("click", () => {
       authChannel = button.dataset.authChannel;
-      $$("[data-auth-channel]", modalContent).forEach(item =>
-        item.classList.toggle("active", item === button)
-      );
+
+      $$("[data-auth-channel]", modalContent).forEach(item => {
+        item.classList.toggle("active", item === button);
+      });
 
       const input = $("#authDestination");
       const label = $("#authDestinationLabel");
@@ -538,6 +898,7 @@ function showAuthStart(purpose = "login") {
         input.autocomplete = "tel";
         input.placeholder = "+91 98765 43210";
       }
+
       input.value = "";
       $("#authError").textContent = "";
     });
@@ -549,16 +910,23 @@ function showAuthStart(purpose = "login") {
 
   $("#authStartForm").addEventListener("submit", event => {
     event.preventDefault();
+
     const input = $("#authDestination");
     const value = input.value.trim();
     const error = $("#authError");
 
-    if (authChannel === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+    if (
+      authChannel === "email" &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+    ) {
       error.textContent = "Enter a valid email address.";
       return;
     }
 
-    if (authChannel === "phone" && value.replace(/\D/g, "").length < 10) {
+    if (
+      authChannel === "phone" &&
+      value.replace(/\D/g, "").length < 10
+    ) {
       error.textContent = "Enter a valid phone number.";
       return;
     }
@@ -569,53 +937,94 @@ function showAuthStart(purpose = "login") {
 }
 
 function showOtpVerification() {
-  const destinationLabel = authChannel === "email" ? "email address" : "mobile number";
+  const destinationLabel =
+    authChannel === "email" ? "email address" : "mobile number";
 
   openModal(`
     <p class="eyebrow">ONE MORE STEP</p>
+
     <h2 id="modalTitle">Enter your code.</h2>
-    <p>In the real version, a one-time code will be sent to your ${destinationLabel}: <strong>${escapeHTML(authDestination)}</strong>.</p>
+
+    <p>
+      In the real version, a one-time code will be sent to your
+      ${destinationLabel}: <strong>${escapeHTML(authDestination)}</strong>.
+    </p>
+
     <form id="otpForm" class="form-stack">
       <div class="field">
         <label for="otpCode">Six-digit demonstration code</label>
-        <input id="otpCode" class="form-input" inputmode="numeric" autocomplete="one-time-code"
-          maxlength="6" pattern="[0-9]{6}" placeholder="123456" required />
+
+        <input
+          id="otpCode"
+          class="form-input"
+          inputmode="numeric"
+          autocomplete="one-time-code"
+          maxlength="6"
+          pattern="[0-9]{6}"
+          placeholder="123456"
+          required
+        />
+
         <span class="field-error" id="otpError"></span>
       </div>
-      <button class="button button-dark full-width" type="submit">Verify and continue →</button>
+
+      <button class="button button-dark full-width" type="submit">
+        Verify and continue →
+      </button>
     </form>
+
     <div class="demo-note">
-      Demo code: <strong>123456</strong>. No code was actually sent. Real OTP verification must be performed by the backend.
+      Demo code: <strong>123456</strong>.
+      No code was actually sent. Real OTP verification must be performed by the backend.
     </div>
+
     <div class="form-actions">
-      <button class="button button-outline" id="changeDestination" type="button">Go back</button>
-      <button class="button button-outline" id="resendDemo" type="button">Resend demo code</button>
+      <button class="button button-outline" id="changeDestination" type="button">
+        Go back
+      </button>
+
+      <button class="button button-outline" id="resendDemo" type="button">
+        Resend demo code
+      </button>
     </div>
   `);
 
   $("#otpForm").addEventListener("submit", event => {
     event.preventDefault();
+
     const code = $("#otpCode").value.trim();
 
     if (code !== "123456") {
-      $("#otpError").textContent = "Incorrect demo code. For this prototype, use 123456.";
+      $("#otpError").textContent =
+        "Incorrect demo code. For this prototype, use 123456.";
       return;
     }
 
     // DEMO ONLY. This does not prove ownership of the email or phone.
     profile = {
       name: profile?.name || "",
-      email: authChannel === "email" ? authDestination : (profile?.email || ""),
-      phone: authChannel === "phone" ? authDestination : (profile?.phone || ""),
+      email: authChannel === "email"
+        ? authDestination
+        : (profile?.email || ""),
+      phone: authChannel === "phone"
+        ? authDestination
+        : (profile?.phone || ""),
       demoAuthenticated: true
     };
 
     saveStorage(STORAGE.profile, profile);
-    showToast("Demo sign-in complete. Real identity verification is not enabled.");
+
+    showToast(
+      "Demo sign-in complete. Real identity verification is not enabled."
+    );
+
     renderAccount("profile");
   });
 
-  $("#changeDestination").addEventListener("click", () => showAuthStart(authPurpose));
+  $("#changeDestination").addEventListener("click", () => {
+    showAuthStart(authPurpose);
+  });
+
   $("#resendDemo").addEventListener("click", () => {
     showToast("Demo only: no email or SMS was sent.");
   });
@@ -640,85 +1049,215 @@ function renderAccount(tab = currentAccountTab) {
   if (tab === "profile") {
     body = `
       <form id="profileForm" class="form-stack">
-        <div class="field"><label for="profileName">Your name</label>
-          <input id="profileName" value="${escapeHTML(profile.name || "")}" maxlength="80" placeholder="Your name" /></div>
-        <div class="field"><label>Email</label>
+        <div class="field">
+          <label for="profileName">Your name</label>
+
+          <input
+            id="profileName"
+            value="${escapeHTML(profile.name || "")}"
+            maxlength="80"
+            placeholder="Your name"
+          />
+        </div>
+
+        <div class="field">
+          <label>Email</label>
           <input value="${escapeHTML(profile.email || "")}" readonly />
-          <span class="field-note">Demo field. A real account must verify email ownership.</span></div>
-        <div class="field"><label>Mobile number</label>
+
+          <span class="field-note">
+            Demo field. A real account must verify email ownership.
+          </span>
+        </div>
+
+        <div class="field">
+          <label>Mobile number</label>
           <input value="${escapeHTML(profile.phone || "")}" readonly />
-          <span class="field-note">Demo field. A real account must verify phone ownership.</span></div>
-        <button class="button button-dark full-width" type="submit">Save profile</button>
+
+          <span class="field-note">
+            Demo field. A real account must verify phone ownership.
+          </span>
+        </div>
+
+        <button class="button button-dark full-width" type="submit">
+          Save profile
+        </button>
       </form>
     `;
   } else if (tab === "addresses") {
     body = `
       <h2 id="modalTitle">Saved addresses.</h2>
+
       <p>These addresses are stored in this browser for the prototype.</p>
+
       <div id="addressList">${renderAddressCards()}</div>
-      <h3 style="font-family:var(--serif);font-weight:400;margin-top:26px">Add an address</h3>
+
+      <h3 style="font-family:var(--serif);font-weight:400;margin-top:26px">
+        Add an address
+      </h3>
+
       <form id="addressForm" class="form-stack">
-        <div class="field"><label for="addressLabel">Address label</label><input id="addressLabel" required maxlength="40" placeholder="Home, College, Work" /></div>
-        <div class="field"><label for="addressName">Recipient name</label><input id="addressName" required maxlength="80" /></div>
-        <div class="field"><label for="addressPhone">Contact number</label><input id="addressPhone" required type="tel" maxlength="20" /></div>
-        <div class="field"><label for="addressLine">Street / house address</label><textarea id="addressLine" required maxlength="250"></textarea></div>
-        <div class="field"><label for="addressCity">City</label><input id="addressCity" required maxlength="80" /></div>
-        <div class="field"><label for="addressState">State</label><input id="addressState" required maxlength="80" /></div>
-        <div class="field"><label for="addressPin">PIN code</label><input id="addressPin" required inputmode="numeric" pattern="[0-9]{6}" maxlength="6" /></div>
-        <button class="button button-dark full-width" type="submit">Save address</button>
+        <div class="field">
+          <label for="addressLabel">Address label</label>
+          <input id="addressLabel" required maxlength="40" placeholder="Home, College, Work" />
+        </div>
+
+        <div class="field">
+          <label for="addressName">Recipient name</label>
+          <input id="addressName" required maxlength="80" />
+        </div>
+
+        <div class="field">
+          <label for="addressPhone">Contact number</label>
+          <input id="addressPhone" required type="tel" maxlength="20" />
+        </div>
+
+        <div class="field">
+          <label for="addressLine">Street / house address</label>
+          <textarea id="addressLine" required maxlength="250"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="addressCity">City</label>
+          <input id="addressCity" required maxlength="80" />
+        </div>
+
+        <div class="field">
+          <label for="addressState">State</label>
+          <input id="addressState" required maxlength="80" />
+        </div>
+
+        <div class="field">
+          <label for="addressPin">PIN code</label>
+          <input
+            id="addressPin"
+            required
+            inputmode="numeric"
+            pattern="[0-9]{6}"
+            maxlength="6"
+          />
+        </div>
+
+        <button class="button button-dark full-width" type="submit">
+          Save address
+        </button>
       </form>
     `;
   } else if (tab === "orders") {
     body = `
       <h2 id="modalTitle">Your orders.</h2>
-      <p>Orders shown here are local demonstration records, not confirmed purchases.</p>
-      ${orders.length ? orders.slice().reverse().map(order => `
-        <div class="order-card">
-          <strong>Order ${escapeHTML(order.id)}</strong>
-          <p>${escapeHTML(order.date)} · ${money(order.total)}</p>
-          <span class="status-pill">${escapeHTML(order.status || "Demo order")}</span>
-          <p>${order.items.length} product line(s)</p>
-          <button class="button button-outline" data-track-order="${escapeHTML(order.id)}">View demo tracking</button>
-        </div>
-      `).join("") : `<div class="account-card"><strong>No orders yet.</strong><p>Your demonstration orders will appear here.</p></div>`}
+
+      <p>
+        Orders shown here are local demonstration records, not confirmed purchases.
+      </p>
+
+      ${orders.length
+        ? orders.slice().reverse().map(order => `
+          <div class="order-card">
+            <strong>Order ${escapeHTML(order.id)}</strong>
+            <p>${escapeHTML(order.date)} · ${money(order.total)}</p>
+            <span class="status-pill">
+              ${escapeHTML(order.status || "Demo order")}
+            </span>
+            <p>${order.items.length} product line(s)</p>
+
+            <button
+              class="button button-outline"
+              data-track-order="${escapeHTML(order.id)}"
+            >
+              View demo tracking
+            </button>
+          </div>
+        `).join("")
+        : `
+          <div class="account-card">
+            <strong>No orders yet.</strong>
+            <p>Your demonstration orders will appear here.</p>
+          </div>
+        `
+      }
     `;
   }
 
   openModal(`
     <p class="eyebrow">YOUR STUDIO NILA</p>
-    <h2 id="modalTitle">${tab === "profile" ? "Your profile." : tab === "addresses" ? "Your addresses." : "Your orders."}</h2>
-    <p>Signed in using the frontend demonstration. This is not a verified secure session.</p>
+
+    <h2 id="modalTitle">
+      ${tab === "profile"
+        ? "Your profile."
+        : tab === "addresses"
+          ? "Your addresses."
+          : "Your orders."
+      }
+    </h2>
+
+    <p>
+      Signed in using the frontend demonstration.
+      This is not a verified secure session.
+    </p>
+
     <nav class="account-nav" aria-label="Account sections">
-      <button data-account-tab="profile" class="${tab === "profile" ? "active" : ""}">Profile</button>
-      <button data-account-tab="addresses" class="${tab === "addresses" ? "active" : ""}">Addresses (${addresses.length})</button>
-      <button data-account-tab="orders" class="${tab === "orders" ? "active" : ""}">Orders (${orders.length})</button>
+      <button
+        data-account-tab="profile"
+        class="${tab === "profile" ? "active" : ""}"
+      >
+        Profile
+      </button>
+
+      <button
+        data-account-tab="addresses"
+        class="${tab === "addresses" ? "active" : ""}"
+      >
+        Addresses (${addresses.length})
+      </button>
+
+      <button
+        data-account-tab="orders"
+        class="${tab === "orders" ? "active" : ""}"
+      >
+        Orders (${orders.length})
+      </button>
     </nav>
+
     ${body}
+
     <div class="form-actions">
-      <button class="button button-outline" id="logoutButton">Sign out</button>
+      <button class="button button-outline" id="logoutButton">
+        Sign out
+      </button>
     </div>
-    <div class="demo-note">Do not use this prototype for real customer authentication or sensitive personal information.</div>
+
+    <div class="demo-note">
+      Do not use this prototype for real customer authentication or sensitive personal information.
+    </div>
   `);
 
   $$("[data-account-tab]", modalContent).forEach(button => {
-    button.addEventListener("click", () => renderAccount(button.dataset.accountTab));
+    button.addEventListener("click", () => {
+      renderAccount(button.dataset.accountTab);
+    });
   });
 
   const profileForm = $("#profileForm");
+
   if (profileForm) {
     profileForm.addEventListener("submit", event => {
       event.preventDefault();
+
       profile.name = $("#profileName").value.trim();
+
       saveStorage(STORAGE.profile, profile);
+
       showToast("Demo profile saved in this browser.");
       renderAccount("profile");
     });
   }
 
   const addressForm = $("#addressForm");
+
   if (addressForm) {
     addressForm.addEventListener("submit", event => {
       event.preventDefault();
+
       const pin = $("#addressPin").value.trim();
 
       if (!/^\d{6}$/.test(pin)) {
@@ -738,6 +1277,7 @@ function renderAccount(tab = currentAccountTab) {
       });
 
       saveStorage(STORAGE.addresses, addresses);
+
       showToast("Demo address saved.");
       renderAccount("addresses");
     });
@@ -745,14 +1285,19 @@ function renderAccount(tab = currentAccountTab) {
 
   $$("[data-delete-address]", modalContent).forEach(button => {
     button.addEventListener("click", () => {
-      addresses = addresses.filter(address => address.id !== button.dataset.deleteAddress);
+      addresses = addresses.filter(
+        address => address.id !== button.dataset.deleteAddress
+      );
+
       saveStorage(STORAGE.addresses, addresses);
       renderAccount("addresses");
     });
   });
 
   $$("[data-track-order]", modalContent).forEach(button => {
-    button.addEventListener("click", () => showDemoTracking(button.dataset.trackOrder));
+    button.addEventListener("click", () => {
+      showDemoTracking(button.dataset.trackOrder);
+    });
   });
 
   $("#logoutButton").addEventListener("click", () => {
@@ -764,6 +1309,7 @@ function renderAccount(tab = currentAccountTab) {
     } : null;
 
     saveStorage(STORAGE.profile, profile);
+
     showToast("Signed out of the frontend demo.");
     showAuthStart("login");
   });
@@ -771,22 +1317,43 @@ function renderAccount(tab = currentAccountTab) {
 
 function renderAddressCards() {
   if (!addresses.length) {
-    return `<div class="account-card"><strong>No saved addresses.</strong><p>Add one below to use it in the demo checkout.</p></div>`;
+    return `
+      <div class="account-card">
+        <strong>No saved addresses.</strong>
+        <p>Add one below to use it in the demo checkout.</p>
+      </div>
+    `;
   }
 
   return addresses.map(address => `
     <div class="address-card">
-      <strong>${escapeHTML(address.label)} · ${escapeHTML(address.name)}</strong>
+      <strong>
+        ${escapeHTML(address.label)} · ${escapeHTML(address.name)}
+      </strong>
+
       <p>${escapeHTML(address.line)}</p>
-      <p>${escapeHTML(address.city)}, ${escapeHTML(address.state)} — ${escapeHTML(address.pin)}</p>
+
+      <p>
+        ${escapeHTML(address.city)}, ${escapeHTML(address.state)}
+        — ${escapeHTML(address.pin)}
+      </p>
+
       <p>${escapeHTML(address.phone)}</p>
-      <button class="text-button" type="button" data-delete-address="${escapeHTML(address.id)}">Remove address</button>
+
+      <button
+        class="text-button"
+        type="button"
+        data-delete-address="${escapeHTML(address.id)}"
+      >
+        Remove address
+      </button>
     </div>
   `).join("");
 }
 
 function showDemoTracking(orderId) {
   const order = orders.find(item => item.id === orderId);
+
   if (!order) {
     showToast("Demo order not found.");
     return;
@@ -794,18 +1361,37 @@ function showDemoTracking(orderId) {
 
   openModal(`
     <p class="eyebrow">ORDER DETAILS · DEMO</p>
+
     <h2 id="modalTitle">Your order journey.</h2>
-    <p>Order ${escapeHTML(order.id)} · ${escapeHTML(order.date)}</p>
+
+    <p>
+      Order ${escapeHTML(order.id)} · ${escapeHTML(order.date)}
+    </p>
+
     <div class="account-card">
       <strong>Order received</strong>
-      <p>This is a local demonstration status, not a live courier update.</p>
-      <span class="status-pill">Demo status: ${escapeHTML(order.status || "Order placed")}</span>
+
+      <p>
+        This is a local demonstration status, not a live courier update.
+      </p>
+
+      <span class="status-pill">
+        Demo status: ${escapeHTML(order.status || "Order placed")}
+      </span>
     </div>
-    <div class="demo-note">Live courier tracking will require a shipping provider and backend integration.</div>
-    <button class="button button-outline full-width" id="backToOrders">Back to orders</button>
+
+    <div class="demo-note">
+      Live courier tracking will require a shipping provider and backend integration.
+    </div>
+
+    <button class="button button-outline full-width" id="backToOrders">
+      Back to orders
+    </button>
   `);
 
-  $("#backToOrders").addEventListener("click", () => renderAccount("orders"));
+  $("#backToOrders").addEventListener("click", () => {
+    renderAccount("orders");
+  });
 }
 
 /* ---------------- CHECKOUT DEMO ---------------- */
@@ -827,6 +1413,7 @@ function startCheckout() {
   checkoutStep = 1;
   checkoutAddress = addresses[0]?.id || null;
   checkoutPayment = "cod";
+
   renderCheckout();
 }
 
@@ -837,122 +1424,276 @@ function renderCheckout() {
 
   let content = `
     <p class="eyebrow">A FEW MORE DETAILS</p>
+
     <h2 id="modalTitle">Checkout.</h2>
+
     <div class="checkout-steps">
-      <span class="${checkoutStep === 1 ? "active" : ""}">01 · Delivery</span>
-      <span class="${checkoutStep === 2 ? "active" : ""}">02 · Payment</span>
-      <span class="${checkoutStep === 3 ? "active" : ""}">03 · Review</span>
+      <span class="${checkoutStep === 1 ? "active" : ""}">
+        01 · Delivery
+      </span>
+
+      <span class="${checkoutStep === 2 ? "active" : ""}">
+        02 · Payment
+      </span>
+
+      <span class="${checkoutStep === 3 ? "active" : ""}">
+        03 · Review
+      </span>
     </div>
   `;
 
   if (checkoutStep === 1) {
     content += `
-      <h3 style="font-family:var(--serif);font-weight:400">Where should we send it?</h3>
+      <h3 style="font-family:var(--serif);font-weight:400">
+        Where should we send it?
+      </h3>
+
       ${addresses.length ? `
         <div class="form-stack">
           ${addresses.map(address => `
             <label class="radio-card">
-              <input type="radio" name="deliveryAddress" value="${escapeHTML(address.id)}"
-                ${checkoutAddress === address.id ? "checked" : ""} />
-              <div><strong>${escapeHTML(address.label)} · ${escapeHTML(address.name)}</strong>
-                <span>${escapeHTML(address.line)}, ${escapeHTML(address.city)}, ${escapeHTML(address.state)} ${escapeHTML(address.pin)}</span>
+              <input
+                type="radio"
+                name="deliveryAddress"
+                value="${escapeHTML(address.id)}"
+                ${checkoutAddress === address.id ? "checked" : ""}
+              />
+
+              <div>
+                <strong>
+                  ${escapeHTML(address.label)} · ${escapeHTML(address.name)}
+                </strong>
+
+                <span>
+                  ${escapeHTML(address.line)},
+                  ${escapeHTML(address.city)},
+                  ${escapeHTML(address.state)}
+                  ${escapeHTML(address.pin)}
+                </span>
+
                 <span>${escapeHTML(address.phone)}</span>
               </div>
             </label>
           `).join("")}
         </div>
-        <button class="text-button" id="addAddressFromCheckout">+ Add another address</button>
+
+        <button class="text-button" id="addAddressFromCheckout">
+          + Add another address
+        </button>
       ` : `
         <p>You haven't saved a delivery address yet.</p>
-        <button class="button button-outline full-width" id="addAddressFromCheckout">Add a delivery address</button>
+
+        <button
+          class="button button-outline full-width"
+          id="addAddressFromCheckout"
+        >
+          Add a delivery address
+        </button>
       `}
+
       <div class="form-actions">
-        <button class="button button-dark full-width" id="checkoutNext" ${addresses.length ? "" : "disabled"}>Continue to payment →</button>
+        <button
+          class="button button-dark full-width"
+          id="checkoutNext"
+          ${addresses.length ? "" : "disabled"}
+        >
+          Continue to payment →
+        </button>
       </div>
     `;
   } else if (checkoutStep === 2) {
     content += `
-      <h3 style="font-family:var(--serif);font-weight:400">Choose a payment method.</h3>
+      <h3 style="font-family:var(--serif);font-weight:400">
+        Choose a payment method.
+      </h3>
+
       <div class="form-stack">
-        <label class="radio-card"><input type="radio" name="paymentMethod" value="cod" ${checkoutPayment === "cod" ? "checked" : ""} />
-          <div><strong>Cash on delivery</strong><span>Demo selection only. No order is sent to a delivery partner.</span></div>
+        <label class="radio-card">
+          <input
+            type="radio"
+            name="paymentMethod"
+            value="cod"
+            ${checkoutPayment === "cod" ? "checked" : ""}
+          />
+
+          <div>
+            <strong>Cash on delivery</strong>
+            <span>
+              Demo selection only. No order is sent to a delivery partner.
+            </span>
+          </div>
         </label>
-        <label class="radio-card"><input type="radio" name="paymentMethod" value="online" ${checkoutPayment === "online" ? "checked" : ""} />
-          <div><strong>Online payment (demo)</strong><span>No payment gateway is connected and no money will be charged.</span></div>
+
+        <label class="radio-card">
+          <input
+            type="radio"
+            name="paymentMethod"
+            value="online"
+            ${checkoutPayment === "online" ? "checked" : ""}
+          />
+
+          <div>
+            <strong>Online payment (demo)</strong>
+            <span>
+              No payment gateway is connected and no money will be charged.
+            </span>
+          </div>
         </label>
       </div>
+
       <div class="form-actions">
-        <button class="button button-outline" id="checkoutBack">Back</button>
-        <button class="button button-dark" id="checkoutNext">Review order →</button>
+        <button class="button button-outline" id="checkoutBack">
+          Back
+        </button>
+
+        <button class="button button-dark" id="checkoutNext">
+          Review order →
+        </button>
       </div>
     `;
   } else {
-    const selectedAddress = addresses.find(address => address.id === checkoutAddress);
+    const selectedAddress = addresses.find(
+      address => address.id === checkoutAddress
+    );
 
     content += `
-      <h3 style="font-family:var(--serif);font-weight:400">Make sure everything looks right.</h3>
+      <h3 style="font-family:var(--serif);font-weight:400">
+        Make sure everything looks right.
+      </h3>
+
       <div class="account-card">
         <strong>Deliver to</strong>
-        <p>${selectedAddress ? `${escapeHTML(selectedAddress.name)} · ${escapeHTML(selectedAddress.line)}, ${escapeHTML(selectedAddress.city)} ${escapeHTML(selectedAddress.pin)}` : "No address selected"}</p>
-        <button class="text-button" id="editDelivery">Change address</button>
+
+        <p>
+          ${selectedAddress
+            ? `${escapeHTML(selectedAddress.name)} · ${escapeHTML(selectedAddress.line)}, ${escapeHTML(selectedAddress.city)} ${escapeHTML(selectedAddress.pin)}`
+            : "No address selected"
+          }
+        </p>
+
+        <button class="text-button" id="editDelivery">
+          Change address
+        </button>
       </div>
+
       <div class="account-card">
         <strong>Items</strong>
+
         ${cart.map(item => {
           const product = getProduct(item.id);
-          return `<div class="checkout-summary"><span>${escapeHTML(product.name)} × ${item.quantity}</span><span>${money(product.price * item.quantity)}</span></div>`;
+
+          return `
+            <div class="checkout-summary">
+              <span>
+                ${escapeHTML(product.name)}
+                ${item.size ? ` · ${escapeHTML(item.size)}` : ""}
+                × ${item.quantity}
+              </span>
+
+              <span>${money(product.price * item.quantity)}</span>
+            </div>
+          `;
         }).join("")}
-        <div class="checkout-summary"><span>Subtotal</span><span>${money(total)}</span></div>
-        <div class="checkout-summary"><span>Shipping</span><span>${shipping ? money(shipping) : "Free"}</span></div>
-        <div class="checkout-summary total"><span>Total</span><span>${money(grandTotal)}</span></div>
+
+        <div class="checkout-summary">
+          <span>Subtotal</span>
+          <span>${money(total)}</span>
+        </div>
+
+        <div class="checkout-summary">
+          <span>Shipping</span>
+          <span>${shipping ? money(shipping) : "Free"}</span>
+        </div>
+
+        <div class="checkout-summary total">
+          <span>Total</span>
+          <span>${money(grandTotal)}</span>
+        </div>
       </div>
+
       <div class="demo-note">
         ${checkoutPayment === "online"
           ? "Online payment is simulated. No payment provider is connected."
-          : "This is a demo cash-on-delivery selection. No courier will receive this order."}
+          : "This is a demo cash-on-delivery selection. No courier will receive this order."
+        }
         Confirming creates a local demonstration order only.
       </div>
+
       <div class="form-actions">
-        <button class="button button-outline" id="checkoutBack">Back</button>
-        <button class="button button-dark" id="placeDemoOrder">Place demo order →</button>
+        <button class="button button-outline" id="checkoutBack">
+          Back
+        </button>
+
+        <button class="button button-dark" id="placeDemoOrder">
+          Place demo order →
+        </button>
       </div>
     `;
   }
 
   content += `
     <div class="account-card">
-      <div class="checkout-summary"><span>Bag subtotal</span><span>${money(total)}</span></div>
-      <div class="checkout-summary"><span>Shipping</span><span>${shipping ? money(shipping) : "Free"}</span></div>
-      <div class="checkout-summary total"><span>Estimated total</span><span>${money(grandTotal)}</span></div>
+      <div class="checkout-summary">
+        <span>Bag subtotal</span>
+        <span>${money(total)}</span>
+      </div>
+
+      <div class="checkout-summary">
+        <span>Shipping</span>
+        <span>${shipping ? money(shipping) : "Free"}</span>
+      </div>
+
+      <div class="checkout-summary total">
+        <span>Estimated total</span>
+        <span>${money(grandTotal)}</span>
+      </div>
     </div>
-    <div class="demo-note">Frontend prototype only. Real checkout requires server-side inventory and price validation, verified payment, and a backend order record.</div>
+
+    <div class="demo-note">
+      Frontend prototype only. Real checkout requires server-side inventory
+      and price validation, verified payment, and a backend order record.
+    </div>
   `;
 
   openModal(content);
 
-  $("#addAddressFromCheckout")?.addEventListener("click", () => renderAccount("addresses"));
+  $("#addAddressFromCheckout")?.addEventListener("click", () => {
+    renderAccount("addresses");
+  });
 
   $$('input[name="deliveryAddress"]', modalContent).forEach(input => {
-    input.addEventListener("change", () => { checkoutAddress = input.value; });
+    input.addEventListener("change", () => {
+      checkoutAddress = input.value;
+    });
   });
 
   $$('input[name="paymentMethod"]', modalContent).forEach(input => {
-    input.addEventListener("change", () => { checkoutPayment = input.value; });
+    input.addEventListener("change", () => {
+      checkoutPayment = input.value;
+    });
   });
 
   $("#checkoutNext")?.addEventListener("click", () => {
     if (checkoutStep === 1) {
-      const selected = $('input[name="deliveryAddress"]:checked', modalContent);
-      if (selected) checkoutAddress = selected.value;
+      const selected = $(
+        'input[name="deliveryAddress"]:checked',
+        modalContent
+      );
+
+      if (selected) {
+        checkoutAddress = selected.value;
+      }
 
       if (!addresses.some(address => address.id === checkoutAddress)) {
         showToast("Choose or add a delivery address first.");
         return;
       }
+
       checkoutStep = 2;
     } else {
       checkoutStep = 3;
     }
+
     renderCheckout();
   });
 
@@ -976,7 +1717,10 @@ function placeDemoOrder() {
     return;
   }
 
-  const address = addresses.find(item => item.id === checkoutAddress);
+  const address = addresses.find(
+    item => item.id === checkoutAddress
+  );
+
   if (!address || !cart.length) {
     showToast("Your delivery address or bag is missing.");
     return;
@@ -988,11 +1732,15 @@ function placeDemoOrder() {
   const order = {
     id: `SN-${Date.now().toString().slice(-8)}`,
     date: new Date().toLocaleDateString("en-IN"),
+
     items: cart.map(item => ({
       id: item.id,
       quantity: item.quantity,
+      size: item.size || "",
+      selectedColor: item.selectedColor || "",
       price: getProduct(item.id)?.price || 0
     })),
+
     total: subtotal + shipping,
     address: { ...address },
     paymentMethod: checkoutPayment,
@@ -1008,42 +1756,73 @@ function placeDemoOrder() {
 
   openModal(`
     <p class="eyebrow">THANK YOU · DEMO ORDER</p>
+
     <h2 id="modalTitle">That's a wrap.</h2>
-    <p>Your frontend demo order has been created. No payment was processed and no order was sent to a real store or courier.</p>
+
+    <p>
+      Your frontend demo order has been created.
+      No payment was processed and no order was sent to a real store or courier.
+    </p>
+
     <div class="account-card">
       <strong>Order ${escapeHTML(order.id)}</strong>
+
       <p>Order total: ${money(order.total)}</p>
       <p>Placed on ${escapeHTML(order.date)}</p>
-      <span class="status-pill">Demo order saved in this browser</span>
+
+      <span class="status-pill">
+        Demo order saved in this browser
+      </span>
     </div>
+
     <div class="form-actions">
-      <button class="button button-dark" id="viewNewOrder">View my orders</button>
-      <button class="button button-outline" id="continueShopping">Continue shopping</button>
+      <button class="button button-dark" id="viewNewOrder">
+        View my orders
+      </button>
+
+      <button class="button button-outline" id="continueShopping">
+        Continue shopping
+      </button>
     </div>
   `);
 
-  $("#viewNewOrder").addEventListener("click", () => renderAccount("orders"));
+  $("#viewNewOrder").addEventListener("click", () => {
+    renderAccount("orders");
+  });
+
   $("#continueShopping").addEventListener("click", closeModal);
 }
 
 /* ---------------- EVENT WIRING ---------------- */
 
 $("#cartButton").addEventListener("click", openCart);
-$("#accountButton").addEventListener("click", () => renderAccount("profile"));
+
+$("#accountButton").addEventListener("click", () => {
+  renderAccount("profile");
+});
+
 $("#closeModal").addEventListener("click", closeModal);
 $("#checkoutButton").addEventListener("click", startCheckout);
+
 $("#closeSearch").addEventListener("click", () => {
   $("#searchPanel").hidden = true;
 });
+
 $("#searchToggle").addEventListener("click", () => {
   $("#searchPanel").hidden = !$("#searchPanel").hidden;
-  if (!$("#searchPanel").hidden) $("#searchInput").focus();
+
+  if (!$("#searchPanel").hidden) {
+    $("#searchInput").focus();
+  }
 });
 
 $("#searchForm").addEventListener("submit", event => {
   event.preventDefault();
+
   searchTerm = $("#searchInput").value;
+
   renderProducts();
+
   $("#shop").scrollIntoView({ behavior: "smooth" });
 });
 
@@ -1053,11 +1832,14 @@ $("#searchInput").addEventListener("input", event => {
 });
 
 $("#sortSelect").addEventListener("change", renderProducts);
+
 $("#resetFilters").addEventListener("click", () => {
   searchTerm = "";
   activeCategory = "All";
+
   $("#searchInput").value = "";
   $("#sortSelect").value = "featured";
+
   setCategory("All");
 });
 
@@ -1069,22 +1851,33 @@ $$("[data-category]").forEach(button => {
 });
 
 $$("[data-nav-category]").forEach(link => {
-  link.addEventListener("click", () => setCategory(link.dataset.navCategory));
+  link.addEventListener("click", () => {
+    setCategory(link.dataset.navCategory);
+  });
 });
 
 $$("[data-footer-category]").forEach(link => {
-  link.addEventListener("click", () => setCategory(link.dataset.footerCategory));
+  link.addEventListener("click", () => {
+    setCategory(link.dataset.footerCategory);
+  });
 });
 
 $$("[data-open-account]").forEach(button => {
-  button.addEventListener("click", () => renderAccount(button.dataset.openAccount));
+  button.addEventListener("click", () => {
+    renderAccount(button.dataset.openAccount);
+  });
 });
 
-$$("[data-close='cart']").forEach(button => button.addEventListener("click", closeCart));
+$$("[data-close='cart']").forEach(button => {
+  button.addEventListener("click", closeCart);
+});
+
 cartOverlay.addEventListener("click", closeCart);
 
 modalBackdrop.addEventListener("click", event => {
-  if (event.target === modalBackdrop) closeModal();
+  if (event.target === modalBackdrop) {
+    closeModal();
+  }
 });
 
 document.addEventListener("keydown", event => {
@@ -1097,23 +1890,35 @@ document.addEventListener("keydown", event => {
 
 $("#newsletterForm").addEventListener("submit", event => {
   event.preventDefault();
+
   const email = $("#newsletterEmail").value.trim();
+
   $("#newsletterMessage").textContent =
     `Thanks for your interest. Newsletter signup is a frontend demo; ${email} has not been subscribed.`;
+
   $("#newsletterForm").reset();
 });
 
 $("#year").textContent = new Date().getFullYear();
 
+/* ---------------- INITIALIZATION ---------------- */
+
 function initialize() {
-  // Discard malformed or unavailable product references in stored demo cart.
+  // Remove invalid product references and normalize old cart records.
   cart = Array.isArray(cart)
-    ? cart.filter(item =>
-        getProduct(item.id) &&
-        Number.isInteger(item.quantity) &&
-        item.quantity > 0 &&
-        item.quantity <= 10
-      )
+    ? cart
+        .filter(item =>
+          getProduct(item.id) &&
+          Number.isInteger(item.quantity) &&
+          item.quantity > 0 &&
+          item.quantity <= 10
+        )
+        .map(item => ({
+          id: item.id,
+          quantity: item.quantity,
+          size: item.size || "",
+          selectedColor: item.selectedColor || ""
+        }))
     : [];
 
   wishlist = Array.isArray(wishlist)
