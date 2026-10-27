@@ -6,14 +6,12 @@
   Browser storage:
   - Cart, wishlist, demo profile, addresses, and demo orders.
 
-  Not production authentication:
+  Important:
   - Demo OTP is always 123456.
   - No email or SMS is sent.
   - No real payment is processed.
   - Order tracking is simulated.
-  - Never treat this demo as proof of identity.
-
-  Later, replace the demo auth/payment functions with backend API calls.
+  - Production authentication and checkout require a backend.
 */
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -53,12 +51,18 @@ function saveStorage(key, value) {
   }
 }
 
-/* ---------------- PRODUCT CATALOGUE ---------------- */
+/* =========================================================
+   PRODUCT CATALOGUE
+   16 Women + 16 Men + 3 Unisex = 35 products
+========================================================= */
 
 const products = [
+  /* ---------------- WOMEN ---------------- */
+
   {
     id: "linen-shirt",
     name: "The relaxed linen shirt",
+    gender: "Women",
     category: "Clothing",
     color: "Natural ivory",
     price: 1290,
@@ -68,41 +72,21 @@ const products = [
     description: "An easy, relaxed shirt for slow mornings, long afternoons and everything in between."
   },
   {
-    id: "everyday-tote",
-    name: "The everyday tote",
-    category: "Accessories",
-    color: "Warm beige",
-    price: 890,
-    oldPrice: null,
-    badge: "Everyday essential",
-    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=700&q=80",
-    description: "A dependable everyday carry-all for the things that come with you."
-  },
-  {
-    id: "classic-sneakers",
-    name: "The classic low-top",
-    category: "Essentials",
-    color: "Off white",
-    price: 1790,
-    oldPrice: 2190,
-    badge: "Just right",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
-    description: "A clean everyday sneaker made to work with the rest of your wardrobe."
-  },
-  {
     id: "cotton-dress",
     name: "The Sunday dress",
+    gender: "Women",
     category: "Clothing",
     color: "Soft neutral",
     price: 1890,
     oldPrice: null,
-    badge: "",
+    badge: "Easy favourite",
     image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80",
     description: "An unfussy silhouette for days when comfort is part of the plan."
   },
   {
     id: "crossbody",
     name: "The little crossbody",
+    gender: "Women",
     category: "Accessories",
     color: "Earth brown",
     price: 1190,
@@ -112,74 +96,45 @@ const products = [
     description: "A compact everyday bag that keeps the essentials close."
   },
   {
-    id: "cotton-tee",
-    name: "The good cotton tee",
+    id: "everyday-denim-jacket",
+    name: "The everyday denim jacket",
+    gender: "Women",
     category: "Clothing",
-    color: "Classic white",
-    price: 590,
-    oldPrice: null,
-    badge: "Under ₹600",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
-    description: "The kind of tee you buy once, wear often and reach for without thinking."
-  },
-  {
-    id: "sunglasses",
-    name: "The weekend frames",
-    category: "Accessories",
-    color: "Tortoiseshell",
-    price: 690,
-    oldPrice: 850,
-    badge: "",
-    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
-    description: "An understated finishing touch for sunny commutes and weekend plans."
-  },
-  {
-    id: "knit-top",
-    name: "The soft knit top",
-    category: "Clothing",
-    color: "Sand",
-    price: 1090,
-    oldPrice: null,
-    badge: "Easy layer",
-    image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=700&q=80",
-    description: "A simple layer that fits neatly into a well-loved everyday wardrobe."
-  },
-  {
-    id: "wide-leg-trousers",
-    name: "The easy wide-leg trouser",
-    category: "Clothing",
-    color: "Stone",
-    price: 1490,
-    oldPrice: 1790,
-    badge: "Easy favourite",
-    image: "https://images.unsplash.com/photo-1506629905607-d9a4d7f1b1f2?auto=format&fit=crop&w=700&q=80",
-    description: "A relaxed trouser with an easy drape for everyday dressing."
-  },
-  {
-    id: "oversized-shirt",
-    name: "The oversized cotton shirt",
-    category: "Clothing",
-    color: "Blue stripe",
-    price: 1390,
-    oldPrice: null,
-    badge: "",
-    image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=80",
-    description: "A roomy cotton shirt that layers beautifully through the week."
+    color: "Classic blue",
+    price: 1690,
+    oldPrice: 1990,
+    badge: "New arrival",
+    image: "https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=700&q=80",
+    description: "A versatile denim layer that adds a relaxed finish to everyday outfits."
   },
   {
     id: "ribbed-tank",
     name: "The everyday ribbed tank",
+    gender: "Women",
     category: "Clothing",
     color: "Oat",
     price: 490,
     oldPrice: null,
     badge: "Under ₹500",
-    image: "https://images.unsplash.com/photo-1564257577-6a2f9c8f5f2c?auto=format&fit=crop&w=700&q=80",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
     description: "A simple ribbed layer for warm days and easy outfits."
+  },
+  {
+    id: "wide-leg-trousers",
+    name: "The easy wide-leg trouser",
+    gender: "Women",
+    category: "Clothing",
+    color: "Stone",
+    price: 1490,
+    oldPrice: 1790,
+    badge: "Easy favourite",
+    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=700&q=80",
+    description: "A relaxed trouser with an easy drape for everyday dressing."
   },
   {
     id: "linen-shorts",
     name: "The linen weekend short",
+    gender: "Women",
     category: "Clothing",
     color: "Natural",
     price: 990,
@@ -191,6 +146,7 @@ const products = [
   {
     id: "button-midi-skirt",
     name: "The button-front midi skirt",
+    gender: "Women",
     category: "Clothing",
     color: "Olive",
     price: 1290,
@@ -202,6 +158,7 @@ const products = [
   {
     id: "soft-cardigan",
     name: "The soft-touch cardigan",
+    gender: "Women",
     category: "Clothing",
     color: "Mushroom",
     price: 1690,
@@ -211,114 +168,322 @@ const products = [
     description: "A cosy layer for cool evenings, travel and slow mornings."
   },
   {
-    id: "canvas-cap",
-    name: "The everyday canvas cap",
-    category: "Accessories",
-    color: "Washed olive",
+    id: "relaxed-cotton-blouse",
+    name: "The relaxed cotton blouse",
+    gender: "Women",
+    category: "Clothing",
+    color: "Soft white",
+    price: 990,
+    oldPrice: null,
+    badge: "Everyday essential",
+    image: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=700&q=80",
+    description: "A light, easy blouse designed for comfortable everyday styling."
+  },
+  {
+    id: "straight-denim",
+    name: "The straight-leg denim",
+    gender: "Women",
+    category: "Clothing",
+    color: "Indigo",
+    price: 1590,
+    oldPrice: 1890,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=700&q=80",
+    description: "An easy straight-leg fit designed to pair with everyday favourites."
+  },
+  {
+    id: "cotton-kurta",
+    name: "The everyday cotton kurta",
+    gender: "Women",
+    category: "Clothing",
+    color: "Terracotta",
+    price: 1190,
+    oldPrice: null,
+    badge: "Easy comfort",
+    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=700&q=80",
+    description: "A relaxed kurta-inspired look for everyday comfort and understated style."
+  },
+  {
+    id: "relaxed-blazer",
+    name: "The relaxed everyday blazer",
+    gender: "Women",
+    category: "Clothing",
+    color: "Taupe",
+    price: 2290,
+    oldPrice: 2590,
+    badge: "Polished layer",
+    image: "https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=700&q=80",
+    description: "An easy layer that brings a little structure to simple outfits."
+  },
+  {
+    id: "pleated-trousers",
+    name: "The soft pleated trouser",
+    gender: "Women",
+    category: "Clothing",
+    color: "Charcoal",
+    price: 1490,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1506629905607-d9a4d7f1b1f2?auto=format&fit=crop&w=700&q=80",
+    description: "A clean, comfortable trouser with a softly tailored silhouette."
+  },
+  {
+    id: "sunday-maxi-dress",
+    name: "The Sunday maxi dress",
+    gender: "Women",
+    category: "Clothing",
+    color: "Muted floral",
+    price: 1990,
+    oldPrice: null,
+    badge: "Weekend favourite",
+    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=700&q=80",
+    description: "A flowing dress for relaxed weekends, get-togethers and holidays."
+  },
+  {
+    id: "linen-wrap-top",
+    name: "The linen wrap top",
+    gender: "Women",
+    category: "Clothing",
+    color: "Warm cream",
+    price: 1090,
+    oldPrice: null,
+    badge: "New season",
+    image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=700&q=80",
+    description: "A relaxed wrap-style top with a soft silhouette for everyday outfits."
+  },
+
+  /* ---------------- MEN ---------------- */
+
+  {
+    id: "cotton-tee",
+    name: "The good cotton tee",
+    gender: "Men",
+    category: "Clothing",
+    color: "Classic white",
     price: 590,
     oldPrice: null,
-    badge: "",
-    image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=700&q=80",
-    description: "A laid-back cap that adds an easy finish to casual looks."
+    badge: "Under ₹600",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
+    description: "A versatile cotton tee that works on its own or under a layer."
   },
   {
-    id: "shoulder-bag",
-    name: "The soft shoulder bag",
-    category: "Accessories",
-    color: "Chocolate",
+    id: "knit-top",
+    name: "The soft knit top",
+    gender: "Men",
+    category: "Clothing",
+    color: "Sand",
+    price: 1090,
+    oldPrice: null,
+    badge: "Easy layer",
+    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=700&q=80",
+    description: "A simple layer that fits neatly into a well-loved everyday wardrobe."
+  },
+  {
+    id: "mens-oxford-shirt",
+    name: "The classic Oxford shirt",
+    gender: "Men",
+    category: "Clothing",
+    color: "Sky blue",
+    price: 1290,
+    oldPrice: 1590,
+    badge: "Everyday classic",
+    image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=700&q=80",
+    description: "A dependable button-down shirt for workdays and weekends."
+  },
+  {
+    id: "mens-crew-tee",
+    name: "The everyday crew-neck tee",
+    gender: "Men",
+    category: "Clothing",
+    color: "Clean white",
+    price: 590,
+    oldPrice: null,
+    badge: "Under ₹600",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
+    description: "A soft, versatile tee for everyday wear."
+  },
+  {
+    id: "mens-polo",
+    name: "The relaxed cotton polo",
+    gender: "Men",
+    category: "Clothing",
+    color: "Forest green",
+    price: 890,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1625910513413-5fc45e4d3d2e?auto=format&fit=crop&w=700&q=80",
+    description: "A casual polo with a clean shape for everyday wear."
+  },
+  {
+    id: "mens-chinos",
+    name: "The everyday chino",
+    gender: "Men",
+    category: "Clothing",
+    color: "Sand",
+    price: 1390,
+    oldPrice: 1590,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=700&q=80",
+    description: "An easy chino that moves between casual plans and smarter occasions."
+  },
+  {
+    id: "mens-denim-jacket",
+    name: "The classic denim jacket",
+    gender: "Men",
+    category: "Clothing",
+    color: "Mid blue",
+    price: 1790,
+    oldPrice: 2090,
+    badge: "New arrival",
+    image: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=700&q=80",
+    description: "A timeless denim layer built for repeat wear."
+  },
+  {
+    id: "mens-linen-shirt",
+    name: "The relaxed linen shirt",
+    gender: "Men",
+    category: "Clothing",
+    color: "Natural beige",
+    price: 1290,
+    oldPrice: null,
+    badge: "Warm-weather pick",
+    image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=80",
+    description: "A breathable, relaxed shirt for warm days and easy layering."
+  },
+  {
+    id: "mens-overshirt",
+    name: "The utility overshirt",
+    gender: "Men",
+    category: "Clothing",
+    color: "Olive",
+    price: 1590,
+    oldPrice: null,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=700&q=80",
+    description: "A practical extra layer with a relaxed everyday fit."
+  },
+  {
+    id: "mens-hoodie",
+    name: "The everyday hoodie",
+    gender: "Men",
+    category: "Clothing",
+    color: "Heather grey",
     price: 1490,
-    oldPrice: 1690,
+    oldPrice: null,
+    badge: "Comfort pick",
+    image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80",
+    description: "A soft layer for travel, relaxed days and cooler evenings."
+  },
+  {
+    id: "mens-straight-jeans",
+    name: "The straight-fit denim",
+    gender: "Men",
+    category: "Clothing",
+    color: "Dark indigo",
+    price: 1590,
+    oldPrice: 1790,
     badge: "",
-    image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=700&q=80",
-    description: "A clean, versatile shoulder bag for everyday essentials."
+    image: "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80",
+    description: "A classic straight fit that pairs easily with tees and shirts."
   },
   {
-    id: "minimal-wallet",
-    name: "The minimal card wallet",
-    category: "Accessories",
-    color: "Tan",
-    price: 490,
-    oldPrice: null,
-    badge: "Small essential",
-    image: "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=700&q=80",
-    description: "A compact wallet designed to keep the everyday basics together."
-  },
-  {
-    id: "gold-hoops",
-    name: "The little gold hoops",
-    category: "Accessories",
-    color: "Gold tone",
-    price: 390,
-    oldPrice: null,
-    badge: "Under ₹400",
-    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=700&q=80",
-    description: "Simple hoop earrings for an understated everyday finish."
-  },
-  {
-    id: "everyday-belt",
-    name: "The everyday belt",
-    category: "Accessories",
-    color: "Cognac",
-    price: 690,
-    oldPrice: null,
-    badge: "",
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",
-    description: "A classic belt that works with denim, trousers and dresses."
-  },
-  {
-    id: "weekend-sandals",
-    name: "The weekend sandal",
-    category: "Essentials",
-    color: "Caramel",
+    id: "mens-cotton-kurta",
+    name: "The everyday cotton kurta",
+    gender: "Men",
+    category: "Clothing",
+    color: "Off white",
     price: 1190,
-    oldPrice: 1390,
-    badge: "",
-    image: "https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&w=700&q=80",
-    description: "An easy warm-weather sandal with a simple everyday profile."
+    oldPrice: null,
+    badge: "Easy comfort",
+    image: "https://images.unsplash.com/photo-1618354691229-88d47f285158?auto=format&fit=crop&w=700&q=80",
+    description: "A simple kurta-inspired look for relaxed days and festive occasions."
   },
   {
-    id: "canvas-sneakers",
-    name: "The canvas slip-on",
-    category: "Essentials",
-    color: "Ecru",
+    id: "mens-linen-shorts",
+    name: "The weekend linen short",
+    gender: "Men",
+    category: "Clothing",
+    color: "Stone",
     price: 990,
     oldPrice: null,
     badge: "",
-    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=700&q=80",
-    description: "A lightweight slip-on for quick errands and casual days."
+    image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=700&q=80",
+    description: "Lightweight shorts for warm weather and laid-back weekends."
   },
   {
-    id: "crew-socks",
-    name: "The everyday crew socks",
+    id: "mens-knit-polo",
+    name: "The textured knit polo",
+    gender: "Men",
+    category: "Clothing",
+    color: "Ecru",
+    price: 1190,
+    oldPrice: null,
+    badge: "Refined casual",
+    image: "https://images.unsplash.com/photo-1627225924765-552d49cf47ad?auto=format&fit=crop&w=700&q=80",
+    description: "A textured polo that gives casual outfits a more considered finish."
+  },
+  {
+    id: "mens-bomber",
+    name: "The everyday bomber jacket",
+    gender: "Men",
+    category: "Clothing",
+    color: "Black",
+    price: 1990,
+    oldPrice: 2290,
+    badge: "",
+    image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80",
+    description: "A versatile jacket that adds structure to simple everyday outfits."
+  },
+  {
+    id: "mens-canvas-sneakers",
+    name: "The canvas low-top",
+    gender: "Men",
     category: "Essentials",
-    color: "Cream mix",
-    price: 290,
+    color: "Ecru",
+    price: 1190,
+    oldPrice: null,
+    badge: "Daily essential",
+    image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=700&q=80",
+    description: "A clean low-top sneaker for everyday plans and weekend walks."
+  },
+
+  /* ---------------- UNISEX ---------------- */
+
+  {
+    id: "everyday-tote",
+    name: "The everyday tote",
+    gender: "Unisex",
+    category: "Accessories",
+    color: "Warm beige",
+    price: 890,
     oldPrice: null,
     badge: "Everyday essential",
-    image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=700&q=80",
-    description: "Soft everyday socks that make the small things feel considered."
+    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=700&q=80",
+    description: "A dependable everyday carry-all for the things that come with you."
   },
   {
-    id: "water-bottle",
-    name: "The carry-along bottle",
+    id: "classic-sneakers",
+    name: "The classic low-top",
+    gender: "Unisex",
     category: "Essentials",
-    color: "Sage",
-    price: 590,
-    oldPrice: null,
+    color: "Off white",
+    price: 1790,
+    oldPrice: 2190,
+    badge: "Just right",
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
+    description: "A clean everyday sneaker made to work with the rest of your wardrobe."
+  },
+  {
+    id: "sunglasses",
+    name: "The weekend frames",
+    gender: "Unisex",
+    category: "Accessories",
+    color: "Tortoiseshell",
+    price: 690,
+    oldPrice: 850,
     badge: "",
-    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=80",
-    description: "A reusable bottle for your commute, desk and weekend plans."
-  },
-  {
-    id: "travel-pouch",
-    name: "The little travel pouch",
-    category: "Essentials",
-    color: "Natural canvas",
-    price: 390,
-    oldPrice: null,
-    badge: "Small essential",
-    image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=700&q=80",
-    description: "A handy pouch for cables, cosmetics and the little things."
+    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
+    description: "An understated finishing touch for sunny commutes and weekend plans."
   }
 ];
 
@@ -376,7 +541,7 @@ function cartTotal() {
   }, 0);
 }
 
-/* ---------------- PRODUCT DISPLAY, SEARCH AND SORT ---------------- */
+/* ---------------- SEARCH, FILTER AND SORT ---------------- */
 
 function visibleProducts() {
   let result = [...products];
@@ -389,7 +554,7 @@ function visibleProducts() {
     const term = searchTerm.toLowerCase().trim();
 
     result = result.filter(product =>
-      `${product.name} ${product.category} ${product.color} ${product.description}`
+      `${product.name} ${product.gender} ${product.category} ${product.color} ${product.description}`
         .toLowerCase()
         .includes(term)
     );
@@ -434,17 +599,32 @@ function renderProducts() {
     card.dataset.productId = product.id;
 
     image.src = product.image;
-    image.alt = product.name;
+    image.alt = `${product.gender} ${product.name}`;
 
     image.onerror = () => {
-      image.style.opacity = ".35";
-      image.alt = `${product.name} — product image unavailable`;
+      if (!image.dataset.fallbackTried) {
+        image.dataset.fallbackTried = "true";
+
+        const fallbackImages = {
+          Women: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=700&q=80",
+          Men: "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=700&q=80",
+          Unisex: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80"
+        };
+
+        image.src = fallbackImages[product.gender] || fallbackImages.Unisex;
+      } else {
+        image.removeAttribute("src");
+        image.alt = `${product.name} image unavailable`;
+        image.style.background = "#e9e6dc";
+      }
     };
 
     badge.textContent = product.badge;
     badge.hidden = !product.badge;
 
-    $(".product-category", fragment).textContent = product.category;
+    $(".product-category", fragment).textContent =
+      `${product.gender} · ${product.category}`;
+
     $(".product-color", fragment).textContent = product.color;
     $(".product-name", fragment).textContent = product.name;
 
@@ -508,11 +688,7 @@ function addToCart(id, size = "", selectedColor = "") {
   const product = getProduct(id);
   if (!product) return;
 
-  const key = cartItemKey({
-    id,
-    size,
-    selectedColor
-  });
+  const key = cartItemKey({ id, size, selectedColor });
 
   const existing = cart.find(item => cartItemKey(item) === key);
 
@@ -583,6 +759,7 @@ function renderCart() {
   if (!cart.length) {
     const empty = document.createElement("div");
     empty.className = "empty-state";
+
     empty.innerHTML =
       "<h3>Your bag is taking a break.</h3><p>Find something you'll reach for every day.</p>";
 
@@ -684,7 +861,7 @@ function closeCart() {
   }
 }
 
-/* ---------------- MODAL AND NOTIFICATIONS ---------------- */
+/* ---------------- MODALS AND TOASTS ---------------- */
 
 function openModal(html) {
   modalContent.innerHTML = html;
@@ -731,9 +908,31 @@ function openProductDetails(id) {
   const product = getProduct(id);
   if (!product) return;
 
+  const isFootwear = product.name.toLowerCase().includes("sneaker");
+
+  const sizeOptions = isFootwear
+    ? `
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8" selected>8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    `
+    : product.category === "Clothing"
+      ? `
+        <option value="XS">XS</option>
+        <option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      `
+      : `<option value="One size">One size</option>`;
+
   openModal(`
     <p class="eyebrow">
-      ${escapeHTML(product.category)} · ${escapeHTML(product.color)}
+      ${escapeHTML(product.gender)} ·
+      ${escapeHTML(product.category)} ·
+      ${escapeHTML(product.color)}
     </p>
 
     <h2 id="modalTitle">${escapeHTML(product.name)}</h2>
@@ -757,12 +956,7 @@ function openProductDetails(id) {
         <label for="detailSize">Size</label>
 
         <select id="detailSize" class="form-input">
-          <option value="One size">One size</option>
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M" selected>M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
+          ${sizeOptions}
         </select>
       </div>
 
@@ -777,6 +971,8 @@ function openProductDetails(id) {
           <option value="Black">Black</option>
           <option value="Olive">Olive</option>
           <option value="Sand">Sand</option>
+          <option value="Navy">Navy</option>
+          <option value="Blue">Blue</option>
         </select>
       </div>
     </div>
@@ -947,7 +1143,8 @@ function showOtpVerification() {
 
     <p>
       In the real version, a one-time code will be sent to your
-      ${destinationLabel}: <strong>${escapeHTML(authDestination)}</strong>.
+      ${destinationLabel}:
+      <strong>${escapeHTML(authDestination)}</strong>.
     </p>
 
     <form id="otpForm" class="form-stack">
@@ -1098,7 +1295,12 @@ function renderAccount(tab = currentAccountTab) {
       <form id="addressForm" class="form-stack">
         <div class="field">
           <label for="addressLabel">Address label</label>
-          <input id="addressLabel" required maxlength="40" placeholder="Home, College, Work" />
+          <input
+            id="addressLabel"
+            required
+            maxlength="40"
+            placeholder="Home, College, Work"
+          />
         </div>
 
         <div class="field">
@@ -1128,6 +1330,7 @@ function renderAccount(tab = currentAccountTab) {
 
         <div class="field">
           <label for="addressPin">PIN code</label>
+
           <input
             id="addressPin"
             required
@@ -1154,10 +1357,13 @@ function renderAccount(tab = currentAccountTab) {
         ? orders.slice().reverse().map(order => `
           <div class="order-card">
             <strong>Order ${escapeHTML(order.id)}</strong>
+
             <p>${escapeHTML(order.date)} · ${money(order.total)}</p>
+
             <span class="status-pill">
               ${escapeHTML(order.status || "Demo order")}
             </span>
+
             <p>${order.items.length} product line(s)</p>
 
             <button
@@ -1899,12 +2105,12 @@ $("#newsletterForm").addEventListener("submit", event => {
   $("#newsletterForm").reset();
 });
 
-$("#year").textContent = new Date().getFullYear();
-
 /* ---------------- INITIALIZATION ---------------- */
 
+$("#year").textContent = new Date().getFullYear();
+
 function initialize() {
-  // Remove invalid product references and normalize old cart records.
+  // Normalize old cart records and remove invalid product references.
   cart = Array.isArray(cart)
     ? cart
         .filter(item =>
