@@ -6,13 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f7f5ef" />
   <meta name="description" content="Discover thoughtful everyday fashion at Studio Nila. Explore clothing, accessories and considered essentials." />
+
   <title>Studio Nila — Everyday, Considered</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+
+  <link rel="stylesheet" href="./style.css" />
+  <script src="./script.js" defer></script>
 </head>
+
 <body>
   <div class="announcement">
     Thoughtfully chosen. Made for everyday.
@@ -31,13 +35,24 @@
 
     <div class="header-actions">
       <button class="icon-button search-toggle" id="searchToggle" aria-label="Search products">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10.8" cy="10.8" r="6.8"></circle>
+          <path d="m16 16 5 5"></path>
+        </svg>
       </button>
+
       <button class="icon-button" id="accountButton" aria-label="My account">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"></circle><path d="M4.8 21c.4-4 3.1-6.2 7.2-6.2s6.8 2.2 7.2 6.2"></path></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.6"></circle>
+          <path d="M4.8 21c.4-4 3.1-6.2 7.2-6.2s6.8 2.2 7.2 6.2"></path>
+        </svg>
       </button>
+
       <button class="icon-button bag-button" id="cartButton" aria-label="Shopping bag">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 8h14l1 13H4L5 8Z"></path>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+        </svg>
         <span class="cart-count" id="cartCount">0</span>
       </button>
     </div>
@@ -45,7 +60,10 @@
 
   <div class="search-panel" id="searchPanel" hidden>
     <form id="searchForm" class="search-form">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.8" cy="10.8" r="6.8"></circle>
+        <path d="m16 16 5 5"></path>
+      </svg>
       <input id="searchInput" type="search" placeholder="Search clothes, bags, everyday essentials..." aria-label="Search products" />
       <button type="button" class="text-button" id="closeSearch">Close</button>
     </form>
@@ -56,29 +74,55 @@
       <div class="hero-copy">
         <p class="eyebrow">THE EVERYDAY EDIT · 2026</p>
         <h1>Less, but<br /><em>better.</em></h1>
-        <p class="hero-description">Pieces you reach for without thinking. Easy silhouettes, thoughtful details, and room to make them your own.</p>
+        <p class="hero-description">
+          Pieces you reach for without thinking. Easy silhouettes,
+          thoughtful details, and room to make them your own.
+        </p>
         <a class="button button-dark" href="#shop">Explore the collection <span>↗</span></a>
-        <div class="hero-footnote"><span class="small-dot"></span> A considered wardrobe starts here.</div>
+        <div class="hero-footnote">
+          <span class="small-dot"></span>
+          A considered wardrobe starts here.
+        </div>
       </div>
+
       <div class="hero-image-wrap">
-        <img class="hero-image" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85" alt="Friends exploring a curated everyday fashion collection" />
-        <div class="image-note"><span>01 / 04</span><span>Everyday, considered</span></div>
+        <img
+          class="hero-image"
+          src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=85"
+          alt="Friends exploring a curated everyday fashion collection"
+        />
+        <div class="image-note">
+          <span>01 / 04</span>
+          <span>Everyday, considered</span>
+        </div>
       </div>
+
       <div class="hero-side-note">STYLE THAT STAYS WITH YOU — EST. 2026</div>
     </section>
 
     <section class="category-strip" aria-label="Shop categories">
       <button class="category-tile category-all active" data-category="All">
-        <span class="category-number">01</span><span>Everything</span><span class="category-arrow">↗</span>
+        <span class="category-number">01</span>
+        <span>Everything</span>
+        <span class="category-arrow">↗</span>
       </button>
+
       <button class="category-tile" data-category="Clothing">
-        <span class="category-number">02</span><span>Clothing</span><span class="category-arrow">↗</span>
+        <span class="category-number">02</span>
+        <span>Clothing</span>
+        <span class="category-arrow">↗</span>
       </button>
+
       <button class="category-tile" data-category="Accessories">
-        <span class="category-number">03</span><span>Accessories</span><span class="category-arrow">↗</span>
+        <span class="category-number">03</span>
+        <span>Accessories</span>
+        <span class="category-arrow">↗</span>
       </button>
+
       <button class="category-tile" data-category="Essentials">
-        <span class="category-number">04</span><span>Essentials</span><span class="category-arrow">↗</span>
+        <span class="category-number">04</span>
+        <span>Essentials</span>
+        <span class="category-arrow">↗</span>
       </button>
     </section>
 
@@ -105,6 +149,7 @@
       </div>
 
       <div class="product-grid" id="productGrid" aria-live="polite"></div>
+
       <div class="empty-state" id="emptyState" hidden>
         <h3>Nothing here just yet.</h3>
         <p>Try another search or explore the full collection.</p>
@@ -114,38 +159,67 @@
 
     <section class="editorial">
       <div class="editorial-image">
-        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85" alt="A calm, carefully arranged clothing store" loading="lazy" />
+        <img
+          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=85"
+          alt="A calm, carefully arranged clothing store"
+          loading="lazy"
+        />
       </div>
+
       <div class="editorial-copy">
         <p class="eyebrow">A LITTLE MORE INTENTION</p>
         <h2>Good style<br />doesn't need<br /><em>to be loud.</em></h2>
-        <p>We believe getting dressed should feel simple. Start with the pieces you love, keep what works, and let your own style do the rest.</p>
+        <p>
+          We believe getting dressed should feel simple. Start with the
+          pieces you love, keep what works, and let your own style do the rest.
+        </p>
         <a href="#story" class="underlined-link">A note from us <span>↗</span></a>
       </div>
     </section>
 
     <section class="benefits section-wrap">
-      <div class="benefit-item"><span class="benefit-index">01</span><h3>Considered choices</h3><p>Pieces picked for their usefulness, comfort and character.</p></div>
-      <div class="benefit-item"><span class="benefit-index">02</span><h3>Easy on the day</h3><p>Wearable styles that work with the things you already own.</p></div>
-      <div class="benefit-item"><span class="benefit-index">03</span><h3>Here to help</h3><p>Questions about a product or order? We're happy to help.</p></div>
+      <div class="benefit-item">
+        <span class="benefit-index">01</span>
+        <h3>Considered choices</h3>
+        <p>Pieces picked for their usefulness, comfort and character.</p>
+      </div>
+
+      <div class="benefit-item">
+        <span class="benefit-index">02</span>
+        <h3>Easy on the day</h3>
+        <p>Wearable styles that work with the things you already own.</p>
+      </div>
+
+      <div class="benefit-item">
+        <span class="benefit-index">03</span>
+        <h3>Here to help</h3>
+        <p>Questions about a product or order? We're happy to help.</p>
+      </div>
     </section>
 
     <section class="newsletter">
       <p class="eyebrow">A NOTE NOW AND THEN</p>
       <h2>Good things, <em>occasionally.</em></h2>
       <p>New arrivals, thoughtful edits, and little things worth sharing.</p>
+
       <form id="newsletterForm" class="newsletter-form">
         <label class="sr-only" for="newsletterEmail">Your email address</label>
         <input type="email" id="newsletterEmail" placeholder="Your email address" required />
         <button type="submit" aria-label="Subscribe to newsletter">Sign me up ↗</button>
       </form>
+
       <p class="form-message" id="newsletterMessage" role="status"></p>
     </section>
 
     <section class="story-section section-wrap" id="story">
       <p class="eyebrow">WHY STUDIO NILA</p>
       <h2>Buy less on impulse.<br /><em>Love what you choose.</em></h2>
-      <p>Studio Nila is a concept fashion store built around everyday pieces and a more personal way to shop. We're here for the clothes you live in, the bag you take everywhere, and the small details that make an outfit feel like you.</p>
+      <p>
+        Studio Nila is a concept fashion store built around everyday pieces
+        and a more personal way to shop. We're here for the clothes you live
+        in, the bag you take everywhere, and the small details that make an
+        outfit feel like you.
+      </p>
     </section>
   </main>
 
@@ -155,22 +229,64 @@
         <a class="wordmark" href="#">studio nila<span>.</span></a>
         <p>Everyday, considered.</p>
       </div>
-      <div class="footer-column"><h3>Explore</h3><a href="#shop">Shop all</a><a href="#shop" data-footer-category="Clothing">Clothing</a><a href="#shop" data-footer-category="Accessories">Accessories</a></div>
-      <div class="footer-column"><h3>Help</h3><button data-open-account="orders">My orders</button><button data-open-account="addresses">My addresses</button><a href="mailto:hello@studionila.example">Contact us</a></div>
-      <div class="footer-column"><h3>Follow along</h3><a href="#newsletterForm">Newsletter</a><a href="#story">Our story</a></div>
+
+      <div class="footer-column">
+        <h3>Explore</h3>
+        <a href="#shop">Shop all</a>
+        <a href="#shop" data-footer-category="Clothing">Clothing</a>
+        <a href="#shop" data-footer-category="Accessories">Accessories</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Help</h3>
+        <button data-open-account="orders">My orders</button>
+        <button data-open-account="addresses">My addresses</button>
+        <a href="mailto:hello@studionila.example">Contact us</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Follow along</h3>
+        <a href="#newsletterForm">Newsletter</a>
+        <a href="#story">Our story</a>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© <span id="year"></span> Studio Nila. A frontend store concept.</span><span>Made for everyday living.</span></div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Studio Nila. A frontend store concept.</span>
+      <span>Made for everyday living.</span>
+    </div>
   </footer>
 
   <!-- Shopping bag drawer -->
   <div class="overlay" id="cartOverlay" hidden></div>
-  <aside class="side-drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-modal="true" role="dialog" hidden>
-    <div class="drawer-header"><div><p class="eyebrow">YOUR PICKS</p><h2 id="cartTitle">Your bag <span id="drawerCount">(0)</span></h2></div><button class="close-button" data-close="cart" aria-label="Close shopping bag">×</button></div>
+
+  <aside
+    class="side-drawer"
+    id="cartDrawer"
+    aria-labelledby="cartTitle"
+    aria-modal="true"
+    role="dialog"
+    hidden
+  >
+    <div class="drawer-header">
+      <div>
+        <p class="eyebrow">YOUR PICKS</p>
+        <h2 id="cartTitle">Your bag <span id="drawerCount">(0)</span></h2>
+      </div>
+      <button class="close-button" data-close="cart" aria-label="Close shopping bag">×</button>
+    </div>
+
     <div class="drawer-content" id="cartItems"></div>
+
     <div class="drawer-footer">
-      <div class="subtotal-row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div>
+      <div class="subtotal-row">
+        <span>Subtotal</span>
+        <strong id="cartSubtotal">₹0</strong>
+      </div>
       <p class="muted small">Shipping and any applicable taxes are calculated at checkout.</p>
-      <button class="button button-dark full-width" id="checkoutButton">Continue to checkout <span>→</span></button>
+      <button class="button button-dark full-width" id="checkoutButton">
+        Continue to checkout <span>→</span>
+      </button>
       <button class="text-button full-width" data-close="cart">Keep looking</button>
     </div>
   </aside>
@@ -178,7 +294,10 @@
   <!-- Account, checkout and OTP dialog -->
   <div class="modal-backdrop" id="modalBackdrop" hidden>
     <section class="modal" id="mainModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-header"><a class="wordmark" href="#">studio nila<span>.</span></a><button class="close-button" id="closeModal" aria-label="Close dialog">×</button></div>
+      <div class="modal-header">
+        <a class="wordmark" href="#">studio nila<span>.</span></a>
+        <button class="close-button" id="closeModal" aria-label="Close dialog">×</button>
+      </div>
       <div class="modal-content" id="modalContent"></div>
     </section>
   </div>
@@ -193,8 +312,12 @@
         <button class="wishlist-button" aria-label="Add to wishlist">♡</button>
         <button class="quick-add">Add to bag <span>+</span></button>
       </div>
+
       <div class="product-info">
-        <div class="product-meta"><span class="product-category"></span><span class="product-color"></span></div>
+        <div class="product-meta">
+          <span class="product-category"></span>
+          <span class="product-color"></span>
+        </div>
         <h3 class="product-name"></h3>
         <div class="product-price"></div>
       </div>
